@@ -8,7 +8,7 @@ const myStyle = css`
 const User = () => {
     return (
         <div>
-            我是一个用户组件  cheng 12
+            我是一个用户组件  000
             <div className={myStyle}>按钮</div>
         </div>
     );

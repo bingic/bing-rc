@@ -1,4 +1,4 @@
-import clear from 'rollup-plugin-clear';
+// import clear from 'rollup-plugin-clear';
 import {nodeResolve} from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs';
 import terser from '@rollup/plugin-terser';
@@ -19,9 +19,9 @@ export default {
     moduleContext: 'null',
     //各种插件使用的配置
     plugins: [
-        clear({
-            targets: ['build'] // 清除build文件夹 babel输出会自动创建
-        }),
+        // clear({
+        //     targets: ['build'] // 清除build文件夹 babel输出会自动创建
+        // }),
         nodeResolve({
             jsnext: true,
             main: true,

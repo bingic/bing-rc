@@ -10,11 +10,13 @@ import htmlTemplate from 'rollup-plugin-generate-html-template'; // 生成html�
 import typescript from '@rollup/plugin-typescript';
 
 export default {
+
     input: ['./src/index.tsx'], // 入口文件
     output: {
         name: 'react-project',
         file: 'dist/main.js',
-        format: 'es'
+        format: 'es',
+        sourcemap: true, // 生成map文件
     },
     context: 'null',
     moduleContext: 'null',
@@ -43,13 +45,16 @@ export default {
         typescript({
             tsconfig: 'tsconfig.json',
         }),
-        serve('dist'),
+
         //监听dist文件夹下的文件变化，自动刷新浏览器
         livereload({
-            watch: 'dist', // 监听文件变化
-            verbose: true,  // 是否在控制台输出日志
+            watch: 'dist', // 监听dist文件夹下的文件变化
+            verbose: false, // 输出日志
+            delay: 500, // 延迟刷新
         }),
-        // livereload('build'), // 热更新
+
+        serve('dist'), // 本地服务
+
         htmlTemplate({
             template: 'public/index.html',
             target: 'dist/index.html',
