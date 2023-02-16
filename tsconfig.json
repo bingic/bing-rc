@@ -8,7 +8,12 @@
     "declaration": true, // 生成相应的'.d.ts'文件。 //重要
     "sourceMap": true, // 生成相应的'.map'文件。
     "outDir": "build", // 指定输出目录。
-    "noImplicitAny": true // 在表达式和声明上有隐含的any类型时报错。
+    "noImplicitAny": true, // 在表达式和声明上有隐含的any类型时报错。
+    "paths": {
+      "@emotion/styled": ["./node_modules/@emotion/styled/types/index.d.ts"],
+      "@emotion/react": ["./node_modules/@emotion/react/types/index.d.ts"],
+      "@emotion/css": ["./node_modules/@emotion/css/types/index.d.ts"]
+    }
   },
   "include": ["src/**/*"], // 指定编译的文件夹
   "exclude": ["node_modules", "build"] // 排除编译的文件夹
