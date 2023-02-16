@@ -4,6 +4,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import terser from '@rollup/plugin-terser';
 import {babel} from '@rollup/plugin-babel';
 
+
 export default {
     input: ['./src/index.jsx'],//入口文件地址
     output: {
