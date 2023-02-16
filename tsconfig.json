@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "es5", // 指定ECMAScript目标版本: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', or 'ESNEXT'.
+    "module": "es6", // 指定使用模块: 'commonjs', 'amd', 'system', 'umd' or 'es2015'.
+    "jsx": "react", // 指定JSX代码生成: 'preserve', 'react-native', or 'react'.
+    "strict": true, // 启用所有严格类型检查选项。
+    "esModuleInterop": true, // 启用对ES模块的interop的支持并且为那些没有默认导出的模块生成一个默认的导出。
+    "declaration": true, // 生成相应的'.d.ts'文件。 //重要
+    "sourceMap": true, // 生成相应的'.map'文件。
+    "outDir": "build", // 指定输出目录。
+    "noImplicitAny": true // 在表达式和声明上有隐含的any类型时报错。
+  },
+  "include": ["src/**/*"], // 指定编译的文件夹
+  "exclude": ["node_modules", "build"] // 排除编译的文件夹
+}
