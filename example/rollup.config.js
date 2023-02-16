@@ -7,7 +7,7 @@ import replace from '@rollup/plugin-replace';
 import serve from 'rollup-plugin-serve';
 import livereload from 'rollup-plugin-livereload';
 import htmlTemplate from 'rollup-plugin-generate-html-template';
-
+// import {mkdirp} from "mkdirp";  //取消使用
 export default {
     input: ['./src/index.jsx'],
     output: {
@@ -18,8 +18,9 @@ export default {
     context: 'null',
     moduleContext: 'null',
     plugins: [
+        // mkdirp.sync('dist'), // 创建dist文件夹,如果没有的话
         clear({
-            targets: ['dist']
+            targets: ['dist']  // 清除dist文件夹
         }),
         nodeResolve({
             jsnext: true,

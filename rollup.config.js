@@ -17,7 +17,7 @@ export default {
     //各种插件使用的配置
     plugins: [
         clear({
-            targets: ['./build']
+            targets: ['build'] // 清除build文件夹 babel输出会自动创建
         }),
         nodeResolve({
             jsnext: true,
