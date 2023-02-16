@@ -1,6 +1,7 @@
 import React from 'react';
-export default function(){
+
+export default function () {
     return (
-        <h1>这是一个组件1</h1>
+        <h1>这是一个组件2</h1>
     )
 }
