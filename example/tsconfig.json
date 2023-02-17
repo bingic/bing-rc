@@ -10,11 +10,12 @@
     "outDir": "build", // 指定输出目录。
     "noImplicitAny": true // 在表达式和声明上有隐含的any类型时报错。
   },
-  "include": ["src/**/*"], // 指定编译的文件夹,这里是 [当前目录] src文件夹下的所有文件。
-  "exclude": ["node_modules", "build"], // 排除编译的文件夹
+  "include": ["src/**/*","../build/Components/about.d.ts"], // 指定编译的文件夹,这里是 [当前目录] src文件夹下的所有文件。
+  "exclude": ["node_modules"], // 排除编译的文件夹
 
   "moduleResolution": "node",
   "paths": {
     "@build/*": ["build/*"]
-  }
+  },
+
 }

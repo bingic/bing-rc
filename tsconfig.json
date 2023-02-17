@@ -10,9 +10,7 @@
     "outDir": "build", // 指定输出目录。
     "noImplicitAny": true, // 在表达式和声明上有隐含的any类型时报错。
     "paths": {
-      "@emotion/styled": ["./node_modules/@emotion/styled/types/index.d.ts"],
-      "@emotion/react": ["./node_modules/@emotion/react/types/index.d.ts"],
-      "@emotion/css": ["./node_modules/@emotion/css/types/index.d.ts"]
+      "@emotion/css": ["./node_modules/@emotion/css/types/index.d.ts"]  //否则引入emotion会报错
     }
   },
   "include": ["src/**/*"], // 指定编译的文件夹

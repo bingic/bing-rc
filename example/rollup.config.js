@@ -1,4 +1,4 @@
-import clear from 'rollup-plugin-clear'; // 清除文件夹
+import clear from 'rollup-plugin-delete'; // 清除文件夹
 import {nodeResolve} from '@rollup/plugin-node-resolve' // 用于解析node_modules中的模块
 import commonjs from '@rollup/plugin-commonjs'; // 用于将CommonJS模块转换为ES6，以便其他插件可以处理
 import {babel} from '@rollup/plugin-babel'; // babel插件
@@ -9,21 +9,27 @@ import livereload from 'rollup-plugin-livereload'; // 热更新 结合rollup-plu
 import htmlTemplate from 'rollup-plugin-generate-html-template'; // 生成html模板
 import typescript from '@rollup/plugin-typescript';
 
+
 export default {
 
     input: ['./src/index.tsx'], // 入口文件
     output: {
         name: 'react-project',
         file: 'dist/main.js',
-        format: 'es',
+        format: 'es', //  五种输出格式：amd /  es6 / iife / umd / cjs , 默认为es6
         sourcemap: true, // 生成map文件
+        globals: {
+            react: 'React',//
+            'react-dom': 'ReactDOM',
+        }
     },
     context: 'null',
     moduleContext: 'null',
     plugins: [
-        // clear({
-        //     targets: ['dist']  // 清除dist文件夹
-        // }),
+        clear({
+            targets: 'dist/*', // 清除dist文件夹下的所有文件
+            runOnce: true // 只清除一次
+        }),
         nodeResolve({
             jsnext: true,
             main: true,
@@ -60,6 +66,7 @@ export default {
             target: 'dist/index.html',
         }),
     ],
+    // external: ['react', 'react-dom'], // 不打包的模块
     external: [
         {
             includeDependencies: true,

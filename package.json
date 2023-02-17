@@ -30,14 +30,19 @@
     "react-dom": "^18.2.0",
     "rollup": "^3.14.0",
     "rollup-plugin-babel": "^4.4.0",
-    "rollup-plugin-clear": "^2.0.7",
     "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-delete": "^2.0.0",
     "rollup-plugin-generate-html-template": "^1.7.0",
     "rollup-plugin-livereload": "^2.0.5",
     "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-serve": "^2.0.2",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "^0.34.1",
     "typescript": "^4.9.5"
+  },
+  "peerDependencies": {
+    "react": "^17.0.0 || ^18.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0"
   }
 }
