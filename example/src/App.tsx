@@ -1,23 +1,14 @@
-// @ts-ignore
-// import {AboutComp} from '../../build/react-rollup-component';
 import React from "react";
-
-
-type AppProps = {
-    name: string;
-};
-
-const App = ({name}: AppProps) => {
-    console.log("app example name: ", name,);
-    console.log("app example time: ", new Date().getTime());
+// @ts-ignore
+import   { AboutComp,UserComp } from '../../build/bundle';  // 从打包后的文件中引入
+const App = () => {
     const [count, setCount] = React.useState(16);
-
     return (
         <>
+            <AboutComp about={'checkout About'} />
+            <UserComp user={"checkout User"}/>
             <h1>This is React Project {count}</h1>
-            {/*<AboutComp/>*/}
-            {/*<UserComp/>*/}
-            {/*<About text={"这是示例传给 组件的内容"}></About>*/}
+            <button onClick={() => setCount(count + 1)}>Click me</button>
         </>
     )
 }

@@ -10,7 +10,11 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": {
+    "name": "ling bing",
+    "email": "icby@qq.com",
+    "WeChat": "aleogo"
+  },
   "license": "ISC",
   "dependencies": {
     "@babel/core": "^7.20.12",
@@ -32,6 +36,7 @@
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-delete": "^2.0.0",
+    "rollup-plugin-dts": "^5.2.0",
     "rollup-plugin-generate-html-template": "^1.7.0",
     "rollup-plugin-livereload": "^2.0.5",
     "rollup-plugin-node-resolve": "^5.2.0",

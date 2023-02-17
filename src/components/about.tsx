@@ -1,15 +1,22 @@
 import React from 'react';
+import {css} from '@emotion/css'
 
-type Props = {
-    text: string;
+type AsProps = {
+    about: string;
 }
-
-export const AboutComp = ({text}: Props) => {
-    console.log("About text", text);
+const AboutComp = ({about}:AsProps) => {
+    const color = 'red';
+    const myStyle = css`
+      color: ${color};
+    `
     return (
         <div>
-            Rollup About =========== text: {text}
+            我是一个 AboutComp 组件 {about}
+            <div className={myStyle}>按钮</div>
         </div>
     );
 };
 
+
+
+export {AboutComp,AsProps};

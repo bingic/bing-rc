@@ -1,17 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {css} from '@emotion/css'
 
-export const UserComp = () => {
-    // const color = 'red';
-    const [color, setColor] = useState('red');
-    useEffect(() => {
-        //open timer
-        const timer = setInterval(() => {
-            setColor(color === 'red' ? 'blue' : 'red');
-        }, 1000);
-        //close timer
-        return () => clearInterval(timer);
-    }, []);
+type UProps = {
+    user: string;
+}
+const UserComp = ({user}:UProps) => {
+    const color = 'red';
 
     const myStyle = css`
       color: ${color};
@@ -25,3 +19,4 @@ export const UserComp = () => {
 };
 
 
+export {UserComp,UProps};

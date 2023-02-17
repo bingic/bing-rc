@@ -15,7 +15,7 @@
 │  ├── dist // 打包后的项目文件
 │  ├── src // 示例项目源码
 │  │  ├── App.tsx // 示例项目组件
-│  │  ├── index.tsx // 示例项目入口
+│  │  ├── index.ts // 示例项目入口
 │  ├── .babelrc  // babel 配置文件
 │  ├── package.json // 示例项目依赖
 │  ├── rollup.config.js // rollup配置文件
@@ -24,7 +24,7 @@
 ├── rollup.config.js // rollup 配置文件
 ├── src // 组件源码
 │  ├── components // 组件
-│  ├── index.tsx // 组件入口
+│  ├── index.ts // 组件入口
 ├── .babelrc // babel 配置文件
 ├── .gitignore // git 忽略文件
 ├── tsconfig.json // ts配置文件

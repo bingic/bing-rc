@@ -4,7 +4,7 @@
   "description": "rollup example",
   "main": "index.tsx",
   "type": "module",
-  "types": "dist/index.d.ts",
+  "types": "../dist/components/about",
   "scripts": {
     "dev": "rollup -c -w",
     "test": "echo \"Error: no test specified\" && exit 1"
