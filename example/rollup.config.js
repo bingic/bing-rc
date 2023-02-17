@@ -16,11 +16,11 @@ export default {
     output: {
         name: 'react-project',
         file: 'dist/main.js',
-        format: 'umd',
+        format: 'es', //  五种输出格式：amd /  es6 / iife / umd / cjs , 默认为es6
         sourcemap: true, // 生成map文件
         globals: {
-            react: 'React',// 用于 umd和iife模式
-            'react-dom': 'ReactDOM',  // 用于umd和iife模式 会将react和react-dom挂载到window上
+            react: 'React',//
+            'react-dom': 'ReactDOM',
         }
     },
     context: 'null',
@@ -67,9 +67,9 @@ export default {
         }),
     ],
     // external: ['react', 'react-dom'], // 不打包的模块
-    // external: [
-    //     {
-    //         includeDependencies: true,
-    //     },
-    // ], // 项目中引用的第三方库
+    external: [
+        {
+            includeDependencies: true,
+        },
+    ], // 项目中引用的第三方库
 }

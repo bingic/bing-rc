@@ -1,5 +1,5 @@
 // @ts-ignore
-import {AboutComp,UserComp} from '../../build/react-rollup-component';
+// import {AboutComp} from '../../build/react-rollup-component';
 import React from "react";
 
 
@@ -11,11 +11,12 @@ const App = ({name}: AppProps) => {
     console.log("app example name: ", name,);
     console.log("app example time: ", new Date().getTime());
     const [count, setCount] = React.useState(16);
+
     return (
         <>
             <h1>This is React Project {count}</h1>
-            <AboutComp text={"hello about"}/>
-            <UserComp/>
+            {/*<AboutComp/>*/}
+            {/*<UserComp/>*/}
             {/*<About text={"这是示例传给 组件的内容"}></About>*/}
         </>
     )

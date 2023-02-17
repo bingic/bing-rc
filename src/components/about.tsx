@@ -5,11 +5,10 @@ type Props = {
 }
 
 export const AboutComp = ({text}: Props) => {
-
     console.log("About text", text);
     return (
         <div>
-            Rollup About 1
+            Rollup About =========== text: {text}
         </div>
     );
 };

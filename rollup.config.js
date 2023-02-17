@@ -66,7 +66,7 @@ export default {
     // 项目中引用的第三方库
     external: [
         {
-            includeDependencies: true,
+            includeDependencies: true, // 是否包含依赖 默认为false 不包含 为true时包含
         },
     ],
 
