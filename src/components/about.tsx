@@ -4,14 +4,13 @@ type Props = {
     text: string;
 }
 
-const About = ({text}:Props) => {
+export const AboutComp = ({text}: Props) => {
 
     console.log("About text", text);
     return (
         <div>
-          Rollup  About 1
+            Rollup About 1
         </div>
     );
 };
 
-export default About;

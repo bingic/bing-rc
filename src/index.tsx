@@ -1,12 +1,9 @@
 import React from 'react';
-import User from './components/user';
 
 
-const App = () => {
-    return (
-        <User/>
-    )
-}
+export * from './Components/about';
+export * from './Components/user';
 
-export default App;
+
+
 
