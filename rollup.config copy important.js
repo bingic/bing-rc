@@ -42,7 +42,7 @@ export default [
         //各种插件使用的配置
         plugins: [
             del({
-                targets: ['dist'] // 清除build文件夹 babel输出会自动创建
+                targets: ['build'] // 清除build文件夹 babel输出会自动创建
             }),
             // dts(), // 生成d.ts文件  这里不能和下面的 dts() 同时使用
             nodeResolve({

@@ -19,4 +19,7 @@ const AboutComp = ({about}:AsProps) => {
 
 
 
-export {AboutComp,AsProps};
+// export {AboutComp,AsProps};
+//
+
+export default AboutComp

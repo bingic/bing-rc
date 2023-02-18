@@ -1,2 +1,7 @@
-export { AboutComp} from './components/about'
-export { UserComp } from './components/user'
+import AboutComp from "./components/about"
+import UserComp from "./components/user";
+
+export {
+    AboutComp,
+    UserComp
+}

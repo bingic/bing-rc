@@ -21,7 +21,7 @@ export default [
 
         plugins: [
             del({
-                targets: ['dist']
+                targets: ['build']
             }),
             nodeResolve({
                 jsnext: true,
@@ -38,7 +38,7 @@ export default [
             }),
             terser(),
             typescript({
-                declaration: true,
+                declaration: false,
                 outDir: 'build/types',
                 tsconfig: 'tsconfig.json',
 

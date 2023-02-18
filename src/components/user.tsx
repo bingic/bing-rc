@@ -6,7 +6,6 @@ type UProps = {
 }
 const UserComp = ({user}:UProps) => {
     const color = 'red';
-
     const myStyle = css`
       color: ${color};
     `
@@ -18,5 +17,7 @@ const UserComp = ({user}:UProps) => {
     );
 };
 
+export default UserComp
 
-export {UserComp,UProps};
+
+
