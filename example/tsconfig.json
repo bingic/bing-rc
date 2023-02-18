@@ -10,7 +10,9 @@
     "outDir": "build", // 指定输出目录。
     "noImplicitAny": true // 在表达式和声明上有隐含的any类型时报错。
   },
-  "include": ["src/**/*","../build/index.d.ts"], // 指定编译的文件夹,这里是 [当前目录] src文件夹下的所有文件。
+  "include": ["src/**/*",
+    "../npm/build/index.d.ts"
+  ], // 指定编译的文件夹,这里是 [当前目录] src文件夹下的所有文件。
   "exclude": ["node_modules"], // 排除编译的文件夹
   //d.ts文件的引用
   "typeRoots": [

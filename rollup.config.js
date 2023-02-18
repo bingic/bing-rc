@@ -13,7 +13,7 @@ export default [
         output: {
             file: 'build/bundle.js',
             format: 'es',
-            sourcemap: true,
+            sourcemap: false,
         },
 
         context: 'null',

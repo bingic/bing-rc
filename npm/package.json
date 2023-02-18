@@ -1,0 +1,26 @@
+{
+  "name": "bing-rc",
+  "version": "1.0.1",
+  "description": "react components",
+  "main": "./build/bundle.js",
+  "types": "./build/bundle.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "files": [
+    "build"
+  ],
+  "keywords": [
+    "react",
+    "typescript"
+  ],
+  "author": {
+    "name": "bingic",
+    "email": "icby@qq.com"
+  },
+  "license": "ISC",
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  }
+}
