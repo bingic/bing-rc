@@ -45,11 +45,7 @@ export default [
             })
         ],
 
-        external: [
-            {
-                includeDependencies: true,
-            },
-        ],
+        external:[]
 
     },
     {
