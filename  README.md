@@ -57,9 +57,7 @@
   "description": "react components",
   "main": "./build/bundle.js",
   "types": "./build/bundle.d.ts",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "scripts": {},
   "files": [
     "build"
   ],
@@ -73,10 +71,11 @@
   },
   "license": "ISC",
   "peerDependencies": {
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
   }
 }
+
 
 ```
 - cd npm    进入文件夹
