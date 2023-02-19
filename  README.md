@@ -45,3 +45,42 @@
 运行示例:`cd example && yarn dev`
 
 将会在example/dist目录下生成打包后的文件,此文件可以直接在浏览器中运行.
+
+
+## 打包上传 npm
+- 将 build 复制到 npm
+- 更新 package.json
+``` json
+{
+  "name": "bing-rc",
+  "version": "1.0.3",
+  "description": "react components",
+  "main": "./build/bundle.js",
+  "types": "./build/bundle.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "files": [
+    "build"
+  ],
+  "keywords": [
+    "react",
+    "typescript"
+  ],
+  "author": {
+    "name": "bingic",
+    "email": "icby@qq.com"
+  },
+  "license": "ISC",
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  }
+}
+
+```
+- cd npm    进入文件夹
+- npm pack    将文件打包
+- npm login   登陆npm 已登陆可忽略
+- npm publish "xxx-1.0.1.tag" --access public
+- 发布完毕。
