@@ -1,6 +1,6 @@
 {
   "name": "bing-rc",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "react components",
   "main": "./build/bundle.js",
   "types": "./build/bundle.d.ts",
