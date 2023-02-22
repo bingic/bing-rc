@@ -5,13 +5,13 @@ import terser from '@rollup/plugin-terser';
 import {babel} from '@rollup/plugin-babel';
 import typescript from '@rollup/plugin-typescript';
 import del from 'rollup-plugin-delete';
-import dts from "rollup-plugin-dts";
+// import dts from "rollup-plugin-dts";
 
 export default [
     {
         input: ['./src/index.ts'],
         output: {
-            file: 'build/bundle.js',
+            file: 'build/index.js',
             format: 'es',
             sourcemap: false,
         },
@@ -38,26 +38,29 @@ export default [
             }),
             terser(),
             typescript({
-                declaration: false,
-                outDir: 'build/types',
+                declaration: true,
+                outDir: 'build',
                 tsconfig: 'tsconfig.json',
-
             })
         ],
 
-        external:[]
+        external:[
+            {
+                includeDependencies: true, // 是否包含依赖 默认为false 不包含 为true时包含
+            },
+        ]
 
     },
-    {
-        input: './src/index.ts',
-        output: [
-            {
-                file: 'build/bundle.d.ts',
-                format: 'es'
-            }
-        ],
-        plugins: [
-            dts(),
-        ],
-    },
+    // {
+    //     input: './src/index.ts',
+    //     output: [
+    //         {
+    //             file: 'build/bundle.d.ts',
+    //             format: 'es'
+    //         }
+    //     ],
+    //     plugins: [
+    //         dts(),
+    //     ],
+    // },
 ]

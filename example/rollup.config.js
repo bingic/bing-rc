@@ -66,10 +66,9 @@ export default {
             target: 'dist/index.html',
         }),
     ],
-    // external: ['react', 'react-dom'], // 不打包的模块
     external: [
         {
             includeDependencies: true,
         },
-    ], // 项目中引用的第三方库
+    ],
 }

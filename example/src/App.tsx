@@ -1,11 +1,13 @@
 import React from "react";
 // @ts-ignore
-import {AboutComp, LoginForm} from "../../build/bundle"; // 从打包后的文件中引入
+import {AboutComp, LoginForm,UserComp} from "../../build/index";
+
 
 const App = () => {
     return (
         <>
-            <LoginForm/>
+            <AboutComp about={"12"}/>
+            <UserComp user={"user"}/>
         </>
     )
 }
