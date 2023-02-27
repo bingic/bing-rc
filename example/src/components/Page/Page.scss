@@ -1,0 +1,282 @@
+@import '../../Styles/variables';
+
+/*
+   Page Layout
+   -----------------------------------------------------------------------------
+*/
+
+.cf-page {
+  width: 100%;
+  flex: 1 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+@media screen and (min-width: $cf-nav-menu--breakpoint) {
+  .cf-page {
+    width: auto;
+    height: 100%;
+    flex: 1 0 0;
+  }
+}
+
+/*
+   Gutters & Max Width
+   -----------------------------------------------------------------------------
+*/
+
+.cf-page-header--fluid,
+.cf-page-header--fixed,
+.cf-page-control-bar--fluid,
+.cf-page-control-bar--fixed,
+.cf-page-contents__fluid,
+.cf-page-contents__fixed {
+  width: 100%;
+  padding: 0 $cf-page--gutter-xs;
+}
+
+.cf-page-header--fixed,
+.cf-page-control-bar--fixed,
+.cf-page-contents__fixed {
+  margin: 0 auto;
+  max-width: $cf-page--max-width;
+}
+
+/*
+   Page Header
+   -----------------------------------------------------------------------------
+*/
+
+.cf-page-header {
+  width: 100%;
+  height: $cf-page--header-size-sm;
+  flex: 0 0 $cf-page--header-size-sm;
+  display: flex;
+  align-items: center;
+}
+
+.cf-page-header--fluid,
+.cf-page-header--fixed {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/*
+   Page Control Bar
+   -----------------------------------------------------------------------------
+*/
+
+.cf-page-control-bar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+@media screen and (min-width: $cf-nav-menu--breakpoint) {
+  .cf-page-control-bar {
+    flex: 0 0 $cf-page--control-bar-size;
+  }
+}
+
+.cf-page-control-bar--fluid,
+.cf-page-control-bar--fixed {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: $cf-space-s;
+}
+
+.cf-page-control-bar--left,
+.cf-page-control-bar--right,
+.cf-page-control-bar--center {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  flex: 0 0
+    ($cf-nav-menu--size - (($cf-nav-menu--size - $cf-form-sm-height) * 0.5));
+
+  &.cf-page-control-bar__no-children {
+    display: none;
+  }
+}
+
+.cf-page-control-bar--left {
+  > * {
+    margin-right: $cf-space-2xs;
+  }
+}
+
+.cf-page-control-bar--center {
+  > * {
+    margin-left: $cf-space-2xs * 0.5;
+    margin-right: $cf-space-2xs * 0.5;
+  }
+}
+
+.cf-page-control-bar--right {
+  > * {
+    margin-left: $cf-space-2xs;
+  }
+}
+
+.cf-page-control-bar--center:not(.cf-page-control-bar__no-children)
+  + .cf-page-control-bar--right {
+  flex: 0 0
+    ($cf-nav-menu--size - (($cf-nav-menu--size - $cf-form-sm-height) * 0.5));
+}
+
+@media screen and (min-width: $cf-nav-menu--breakpoint) {
+  .cf-page-control-bar--fluid,
+  .cf-page-control-bar--fixed {
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+  }
+
+  .cf-page-control-bar--left {
+    justify-content: flex-start;
+    text-align: left;
+    flex: 1 0 30%;
+  }
+
+  .cf-page-control-bar--center {
+    flex: 0 0 0;
+  }
+
+  .cf-page-control-bar--right,
+  .cf-page-control-bar--center:not(.cf-page-control-bar__no-children)
+    + .cf-page-control-bar--right {
+    justify-content: flex-end;
+    text-align: right;
+    flex: 1 0 30%;
+  }
+
+  .cf-page-control-bar--left,
+  .cf-page-control-bar--right,
+  .cf-page-control-bar--center {
+    &.cf-page-control-bar__no-children {
+      display: flex;
+    }
+  }
+
+  .cf-page-header {
+    height: $cf-page--header-size;
+    flex: 0 0 $cf-page--header-size;
+    margin-bottom: $cf-space-l;
+  }
+
+  .cf-page-header--fluid,
+  .cf-page-header--fixed {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
+/*
+  Page Title & Sub-Title
+  ------------------------------------------------------------------------------
+*/
+
+.cf-heading.cf-page--title {
+  letter-spacing: 0;
+  text-transform: none;
+  font-style: normal;
+  cursor: default;
+  display: inline-block;
+  color: $cf-white;
+  font-size: $cf-page--title-size-sm;
+  line-height: $cf-page--title-size-sm;
+}
+
+@media screen and (min-width: $cf-nav-menu--breakpoint) {
+  .cf-heading.cf-page--title {
+    font-size: $cf-page--title-size;
+    line-height: $cf-page--title-size;
+  }
+}
+
+/*
+  Page Contents
+  ------------------------------------------------------------------------------
+*/
+
+.cf-page-contents {
+  width: 100%;
+  position: relative;
+  flex: 1 0 0;
+  overflow: hidden;
+}
+
+.cf-page-contents__fluid {
+  min-height: 100%;
+}
+
+.cf-page-contents__fixed {
+  margin: 0 auto;
+}
+
+/*
+  Scrollable Page
+  ------------------------------------------------------------------------------
+*/
+
+.cf-page-contents.cf-dapper-scrollbars .cf-page-contents__fluid,
+.cf-page-contents.cf-dapper-scrollbars .cf-page-contents__fixed {
+  padding-bottom: $cf-page--gutter-xs;
+}
+
+/*
+  Non-Scrollable Page
+  ------------------------------------------------------------------------------
+*/
+
+.cf-page-contents__no-scroll {
+  display: flex;
+
+  .cf-page-contents__fluid,
+  .cf-page-contents__fixed {
+    height: 100%;
+  }
+}
+
+/*
+  Full Padding After Breakpoint
+  ------------------------------------------------------------------------------
+*/
+@mixin pageGutterModifier($gutter) {
+  .cf-page-header--fluid,
+  .cf-page-header--fixed,
+  .cf-page-control-bar--fluid,
+  .cf-page-control-bar--fixed,
+  .cf-page-contents__fluid,
+  .cf-page-contents__fixed {
+    padding: 0 $gutter;
+  }
+
+  &.cf-page-contents.cf-dapper-scrollbars .cf-page-contents__fluid,
+  &.cf-page-contents.cf-dapper-scrollbars .cf-page-contents__fixed {
+    padding-bottom: $gutter;
+  }
+}
+
+@media screen and (min-width: $cf-nav-menu--breakpoint) {
+  .cf-page__gutter-xs {
+    @include pageGutterModifier($cf-page--gutter-xs);
+  }
+  .cf-page__gutter-sm {
+    @include pageGutterModifier($cf-page--gutter-sm);
+  }
+  .cf-page__gutter-md {
+    @include pageGutterModifier($cf-page--gutter-md);
+  }
+  .cf-page__gutter-lg {
+    @include pageGutterModifier($cf-page--gutter-lg);
+  }
+}

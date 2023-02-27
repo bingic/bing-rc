@@ -1,0 +1,20 @@
+@import '../../../Styles/variables';
+
+/*
+  Error Tooltip Styles
+  ------------------------------------------------------------------------------
+*/
+
+.cf-error-tooltip {
+  color: $c-fire;
+  display: inline-flex;
+  justify-content: center;
+  position: relative;
+  user-select: none;
+  transition: color $cf-transition-default;
+
+  &:hover {
+    cursor: help;
+    color: $c-curacao;
+  }
+}

@@ -1,0 +1,171 @@
+@import '../../Styles/variables';
+
+/*
+   Overlays
+   -----------------------------------------------------------------------------
+*/
+
+// Mixins for shared styles
+%overlay-styles {
+  position: absolute !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  top: 0;
+  left: 0;
+}
+
+%overlay-children {
+  width: 100%;
+}
+
+.cf-overlay--mask {
+  @extend %overlay-styles;
+  z-index: $cf-overlay--mask-z;
+
+  --default-overlay-gradient: linear-gradient(
+    256.11deg,
+    #{rgba($c-amethyst, 0.1)} 0%,
+    #{rgba($c-amethyst, 0.3)} 33.85%,
+    #{rgba($c-amethyst, 0.1)} 67.19%,
+    #{rgba($c-amethyst, 0)}100%
+  );
+  --default-overlay-background: #{$cf-grey-15};
+}
+
+.cf-overlay--children {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.cf-overlay {
+  @extend %overlay-styles;
+  z-index: $cf-overlay--z;
+}
+
+.cf-overlay--container {
+  @extend %overlay-children;
+  @extend %deep-shadow;
+  background-color: $cf-grey-5;
+  border-radius: $cf-radius;
+
+  &__xs {
+    margin: $cf-page--gutter-xs;
+  }
+
+  &__sm {
+    margin: $cf-page--gutter-sm;
+  }
+
+  &__md {
+    margin: $cf-page--gutter-md;
+  }
+
+  &__lg {
+    margin: $cf-page--gutter-lg;
+  }
+
+  &__full {
+    width: 100vw;
+    min-height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 0;
+  }
+}
+
+.cf-overlay--header {
+  @extend %overlay-children;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  @include no-user-select();
+}
+
+.cf-overlay--title {
+  font-family: $cf-overlay--title-font;
+  font-size: $cf-overlay--title-size;
+  font-weight: $cf-overlay--title-weight;
+  color: $cf-overlay--title-color;
+
+  .cf-overlay--header__dismissable & {
+    width: calc(100% - #{$cf-overlay--header-height - 50px});
+  }
+}
+
+.cf-overlay--header__nowrap {
+  height: $cf-overlay--header-height;
+  padding: 0 $cf-overlay--gutter;
+  align-items: center;
+
+  .cf-overlay--title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.cf-overlay--header__wrap {
+  min-height: $cf-overlay--header-height;
+  padding: $cf-marg-c $cf-overlay--gutter;
+  align-items: flex-start;
+
+  .cf-overlay--title {
+    word-break: break-all;
+  }
+}
+
+.cf-overlay--dismiss {
+  width: ($cf-overlay--header-height - $cf-space-2xl);
+  height: ($cf-overlay--header-height - $cf-space-2xl);
+  position: relative;
+  background-color: transparent;
+  border: 0;
+  outline: none;
+
+  /* Use psuedo elements to render the X */
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 22px;
+    height: 3px;
+    border-radius: $cf-radius;
+    background-color: $cf-white;
+    transition: background-color $cf-transition-default;
+  }
+  &:before {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+  &:after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+  /* Hover State */
+  &:hover {
+    cursor: pointer;
+  }
+  &:hover:before,
+  &:hover:after,
+  &:focus:before,
+  &:focus:after {
+    background-color: $cf-grey-85;
+  }
+}
+
+.cf-overlay--body {
+  @extend %overlay-children;
+  padding: $cf-overlay--gutter;
+  padding-top: 0;
+  color: $cf-input-text--default;
+  font-size: 0.9em;
+}
+
+.cf-overlay--footer {
+  @extend %overlay-children;
+  padding: $cf-overlay--gutter;
+  padding-top: 0;
+}

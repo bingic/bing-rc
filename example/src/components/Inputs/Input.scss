@@ -1,0 +1,334 @@
+@import '../../Styles/variables';
+
+/*
+  Input Styles
+  ------------------------------------------------------------------------------
+*/
+
+.cf-input {
+  position: relative;
+}
+
+.cf-input-field {
+  position: relative;
+  z-index: $cf-input--field-z;
+  width: 100%;
+  font-weight: $cf-font-weight--regular;
+  font-family: $cf-text-font;
+  transition: $cf-input--transition;
+  outline: none;
+  appearance: none;
+  border-radius: $cf-radius;
+  background-color: $cf-input-background--default;
+  color: $cf-input-text--default;
+  border: $cf-border solid $cf-input-border--default;
+
+  &:hover {
+    background-color: $cf-input-background--hover;
+    border-color: $cf-input-border--hover;
+    color: $cf-input-text--hover;
+  }
+
+  &:focus {
+    background-color: $cf-input-background--focused;
+    border-color: $cf-input-border--focused;
+    color: $cf-input-text--focused;
+    @include focus-glow();
+  }
+
+  &::-webkit-input-placeholder {
+    color: $cf-input--placeholder-text;
+    font-weight: $cf-font-weight--medium !important;
+  }
+  &::-moz-placeholder {
+    color: $cf-input--placeholder-text;
+    font-weight: $cf-font-weight--medium !important;
+  }
+  &:-ms-input-placeholder {
+    color: $cf-input--placeholder-text;
+    font-weight: $cf-font-weight--medium !important;
+  }
+  &:-moz-placeholder {
+    color: $cf-input--placeholder-text;
+    font-weight: $cf-font-weight--medium !important;
+  }
+}
+
+.cf-input-monospace > .cf-input-field {
+  font-family: $cf-code-font;
+
+  &::-webkit-input-placeholder {
+    font-family: $cf-code-font;
+  }
+  &::-moz-placeholder {
+    font-family: $cf-code-font;
+  }
+  &:-ms-input-placeholder {
+    font-family: $cf-code-font;
+  }
+  &:-moz-placeholder {
+    font-family: $cf-code-font;
+  }
+}
+
+/*
+  Input Icons (Including Status)
+  ------------------------------------------------------------------------------
+*/
+.cf-input-icon {
+  pointer-events: none;
+  top: 50%;
+  z-index: $cf-input--status-z;
+  transition: color $cf-transition-default;
+  font-size: 1.1em;
+  transform: translate(-50%, -50%);
+}
+
+.cf-input-icon,
+.cf-input-clear-btn {
+  position: absolute;
+  z-index: $cf-input--status-z;
+  transition: color 0.25s ease;
+  color: $cf-input-text--default;
+}
+
+.cf-input-field:hover + .cf-input-icon {
+  color: $cf-input-text--hover;
+}
+
+.cf-input-field:focus + .cf-input-icon {
+  color: $cf-input-text--focused;
+}
+/** default size is small, there are
+alternate css for the other sizes */
+.cf-input-clear-btn {
+  &.cf-dismiss-button {
+    background: inherit;
+    border: none;
+    transform: none;
+    opacity: 0.7;
+
+    &:after {
+      content: none;
+    }
+
+    &:hover,
+    &:focus,
+    &:active,
+    &:active:hover,
+    &:visited,
+    &:disabled,
+    &:disabled:hover {
+      background: transparent;
+      border: none;
+      box-shadow: none;
+    }
+
+    &:hover,
+    &:focus {
+      opacity: 1;
+    }
+
+    & .cf-dismiss-button--x {
+      &:before,
+      &:after {
+        width: $cf-form-sm-font;
+      }
+    }
+  }
+
+  &.xsmall {
+    height: $cf-form-xs-height;
+    width: $cf-form-xs-height;
+
+    & .cf-dismiss-button--x {
+      &:before,
+      &:after {
+        width: $cf-form-xs-font;
+      }
+    }
+  }
+
+  &.medium {
+    & .cf-dismiss-button--x {
+      &:before,
+      &:after {
+        width: $cf-form-md-font;
+      }
+    }
+  }
+
+  &.large {
+    & .cf-dismiss-button--x {
+      &:before,
+      &:after {
+        width: $cf-form-lg-font;
+      }
+    }
+  }
+}
+
+/*
+  Checkbox Type Input
+  ------------------------------------------------------------------------------
+*/
+.cf-input__has-checkbox .cf-input-field {
+  position: absolute;
+  left: -9999px;
+}
+
+.cf-input--checkbox {
+  position: relative;
+  background-color: $cf-input-background--default;
+  border-radius: $cf-radius;
+  border: $cf-border solid $cf-input-border--default;
+  transition: border-color $cf-transition-default,
+    background-color $cf-transition-default;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.5, 1.5);
+    border-radius: 50%;
+    background: $cf-input-border--focused;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity $cf-transition-default, transform $cf-transition-default;
+  }
+
+  &.checked:after {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1, 1);
+  }
+
+  &:hover {
+    background-color: $cf-input-background--hover;
+    border-color: $cf-input-border--hover;
+    cursor: pointer;
+  }
+}
+
+/*
+  Size Modifiers
+  ------------------------------------------------------------------------------
+*/
+@mixin inputSizeModifier($fontSize, $padding, $height) {
+  height: $height;
+  font-size: $fontSize;
+
+  .cf-input-field {
+    font-size: $fontSize;
+    padding: 0 $padding;
+    height: $height;
+  }
+
+  .cf-input__indicator {
+    padding-right: $height;
+  }
+
+  &.cf-input__has-icon .cf-input-field {
+    padding-left: $height;
+  }
+
+  &.cf-input__has-clear-btn input {
+    padding-right: $height * 1.05;
+  }
+
+  .cf-input-icon {
+    left: ($height * 0.5) + $cf-border;
+  }
+
+  .cf-input-pseudo {
+    height: $height;
+    width: $height;
+  }
+
+  .cf-input--checkbox {
+    width: $height - ($cf-marg-a + $cf-border);
+    height: $height - ($cf-marg-a + $cf-border);
+    margin: 2px 0;
+
+    &:after {
+      width: ceil(($height - ($cf-marg-a + $cf-border)) * 0.4);
+      height: ceil(($height - ($cf-marg-a + $cf-border)) * 0.4);
+    }
+  }
+}
+
+.cf-input-xs {
+  @include inputSizeModifier(
+    $cf-form-xs-font,
+    $cf-form-xs-padding,
+    $cf-form-xs-height
+  );
+}
+.cf-input-sm {
+  @include inputSizeModifier(
+    $cf-form-sm-font,
+    $cf-form-sm-padding,
+    $cf-form-sm-height
+  );
+}
+.cf-input-md {
+  @include inputSizeModifier(
+    $cf-form-md-font,
+    $cf-form-md-padding,
+    $cf-form-md-height
+  );
+}
+.cf-input-lg {
+  @include inputSizeModifier(
+    $cf-form-lg-font,
+    $cf-form-lg-padding,
+    $cf-form-lg-height
+  );
+}
+
+/*
+  Error State
+  ------------------------------------------------------------------------------
+*/
+.cf-input__error {
+  .cf-input-field {
+    border-color: $cf-input-border--error;
+  }
+  .cf-input-field:hover {
+    border-color: $cf-input-border--error-hover;
+  }
+  .cf-input-field:focus {
+    border-color: $cf-input-border--error-focused;
+    box-shadow: 0 0 6px 0 $cf-input-border--error-focused;
+  }
+}
+
+/*
+  Disabled State
+  ------------------------------------------------------------------------------
+*/
+.cf-input__disabled {
+  .cf-input-icon,
+  .cf-input-field:hover + .cf-input-icon {
+    color: $cf-input-text--disabled;
+  }
+  .cf-input--checkbox {
+    &,
+    &:hover {
+      cursor: default;
+      border-color: $cf-input-border--disabled;
+      background-color: $cf-input-background--disabled;
+
+      &:after {
+        background-color: $cf-input-text--disabled;
+      }
+    }
+  }
+}
+
+.cf-input-field[disabled],
+.cf-input-field[disabled]:hover {
+  border-color: $cf-input-border--disabled;
+  background-color: $cf-input-background--disabled;
+  cursor: not-allowed;
+}

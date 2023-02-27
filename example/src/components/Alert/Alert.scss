@@ -1,0 +1,110 @@
+@import '../../Styles/variables';
+
+/*
+  Alert
+  ------------------------------------------------------------------------------
+*/
+
+$alert--icon-padding: $cf-marg-d + $cf-marg-a;
+
+.cf-alert {
+  width: 100%;
+  border-radius: $cf-radius;
+  padding: $cf-border;
+  font-size: $cf-form-md-font;
+  user-select: none;
+
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  ol,
+  ul,
+  li {
+    font-weight: $cf-font-weight--medium;
+    strong {
+      font-weight: $cf-font-weight--bold;
+    }
+
+    &:first-of-type {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  p {
+    font-size: $cf-form-md-font;
+  }
+}
+
+.cf-alert--contents {
+  width: 100%;
+  border-radius: $cf-radius - 1px;
+  padding: $cf-marg-b;
+  background-color: rgba($g3-castle, 0.85);
+}
+
+.cf-alert--has-icon {
+  padding-left: $alert--icon-padding;
+  position: relative;
+}
+
+.cf-alert--icon {
+  position: absolute;
+  top: 50%;
+  left: $alert--icon-padding * 0.5;
+  transform: translate(-50%, -50%);
+  font-size: 1.5em;
+  color: rgba($g3-castle, 0.85);
+}
+
+/*  Color Modifiers */
+@mixin alertColorModifier($mainColor, $accentColor, $textColor, $boldColor) {
+  color: $textColor;
+
+  strong {
+    color: $boldColor;
+  }
+
+  @include gradient-h($mainColor, $accentColor);
+}
+
+.cf-alert--default {
+  @include alertColorModifier($g7-graphite, $g5-pepper, $g13-mist, $g20-white);
+}
+
+.cf-alert--primary {
+  @include alertColorModifier($c-ocean, $c-star, $c-hydrogen, $g20-white);
+}
+
+.cf-alert--secondary {
+  @include alertColorModifier($c-comet, $c-star, $c-moonstone, $g20-white);
+}
+
+.cf-alert--success {
+  @include alertColorModifier(
+    $c-rainforest,
+    $c-viridian,
+    $c-wasabi,
+    $g20-white
+  );
+}
+
+.cf-alert--warning {
+  @include alertColorModifier($c-pineapple, $c-thunder, $c-sulfur, $g20-white);
+}
+
+.cf-alert--danger {
+  @include alertColorModifier(
+    $c-dreamsicle,
+    $c-curacao,
+    $c-marmelade,
+    $g20-white
+  );
+}

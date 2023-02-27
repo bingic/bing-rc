@@ -1,0 +1,81 @@
+@import '../../../Styles/variables';
+
+/*
+  Button Group
+  ------------------------------------------------------------------------------
+*/
+
+.cf-button-group {
+  display: flex;
+  align-items: center;
+
+  > .cf-button,
+  > .cf-button:after,
+  > .cf-input > .cf-input-field,
+  > .cf-dropdown > .cf-dropdown--button,
+  > .cf-dropdown > .cf-dropdown--button:after {
+    border-radius: 0;
+  }
+
+  > .cf-button-xs.cf-button-square {
+    height: $cf-form-xs-height;
+    width: $cf-form-xs-height;
+  }
+
+  > * + *:before {
+    content: '';
+    position: absolute;
+    top: 1px;
+    bottom: 1px;
+    left: 0;
+    width: 1px;
+    background: rgba($cf-grey-95, 0.1);
+  }
+}
+
+// Button Rounding (Horizontal)
+.cf-button-group__horizontal {
+  flex-direction: row;
+
+  > .cf-button:first-child,
+  > .cf-button:first-child:after,
+  > .cf-input:first-child > .cf-input-field,
+  > .cf-dropdown:first-child > .cf-dropdown--button,
+  > .cf-dropdown:first-child > .cf-dropdown--button:after {
+    border-top-left-radius: $cf-radius;
+    border-bottom-left-radius: $cf-radius;
+  }
+
+  > .cf-button:last-child,
+  > .cf-button:last-child:after,
+  > .cf-input:last-child > .cf-input-field,
+  > .cf-dropdown:last-child > .cf-dropdown--button,
+  > .cf-dropdown:last-child > .cf-dropdown--button:after {
+    border-top-right-radius: $cf-radius;
+    border-bottom-right-radius: $cf-radius;
+  }
+}
+
+// Button Rounding (Vertical)
+.cf-button-group__vertical {
+  flex-direction: column;
+  align-items: stretch;
+
+  > .cf-button:first-child,
+  > .cf-button:first-child:after,
+  > .cf-input:first-child > .cf-input-field,
+  > .cf-dropdown:first-child > .cf-dropdown--button,
+  > .cf-dropdown:first-child > .cf-dropdown--button:after {
+    border-top-left-radius: $cf-radius;
+    border-top-right-radius: $cf-radius;
+  }
+
+  > .cf-button:last-child,
+  > .cf-button:last-child:after,
+  > .cf-input:last-child > .cf-input-field,
+  > .cf-dropdown:last-child > .cf-dropdown--button,
+  > .cf-dropdown:last-child > .cf-dropdown--button:after {
+    border-bottom-left-radius: $cf-radius;
+    border-bottom-right-radius: $cf-radius;
+  }
+}

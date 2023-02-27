@@ -1,0 +1,22 @@
+.button {
+  border: 3px solid #ccc; /* 创建灰色边框 */
+  padding: 10px 20px;
+  color: #fff;
+  font-size: 1.5em;
+  font-weight: 700;
+  //border-image: linear-gradient(to right, #8000f8, #fc9ef8) 1;
+  border-color: transparent; /* 隐藏灰色边框 */
+}
+
+.button:not(:hover) {
+  border-color: #ccc; /* 显示灰色边框 */
+}
+
+.button:hover {
+  border-image: linear-gradient(to right, #8000f8, #fc9ef8) 1;
+  border-color: transparent; /* 隐藏灰色边框 */
+  //字体color渐变
+  background: linear-gradient(to right, #8000f8, #fc9ef8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

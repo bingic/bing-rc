@@ -1,0 +1,15 @@
+@import '../../../Styles/variables';
+
+/*
+  Link Button
+  ------------------------------------------------------------------------------
+*/
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+  &.cf-button {
+    color: $cf-white;
+  }
+}

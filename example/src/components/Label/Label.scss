@@ -1,0 +1,126 @@
+@import '../../Styles/variables';
+
+/*
+  Label Component
+  ------------------------------------------------------------------------------
+*/
+
+$label-delete-size: $cf-text-base-0;
+
+.cf-label {
+  display: inline-flex;
+  align-items: center;
+  align-content: center;
+  user-select: none;
+  transition: background-color $cf-transition-default;
+  flex-wrap: nowrap;
+}
+
+.cf-label--name {
+  display: block;
+  cursor: inherit;
+  font-weight: $cf-font-weight--medium;
+  white-space: nowrap;
+  margin: 0;
+  font-style: normal;
+}
+
+.cf-label--clickable {
+  &,
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.cf-label--delete {
+  display: block;
+  background-color: transparent;
+  position: relative;
+  border: 0;
+  outline: none;
+  opacity: 0.4;
+  transition: opacity $cf-transition-default, transform $cf-transition-default;
+
+  &:focus {
+    opacity: 1;
+  }
+
+  &:hover {
+    opacity: 1;
+    cursor: pointer;
+    transform: rotate(90deg);
+  }
+
+  &:before,
+  &:after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: $label-delete-size;
+    height: $cf-border;
+    border-radius: $cf-border * 0.5;
+    transform: translate(-50%, -50%) rotate(45deg);
+    background: currentColor;
+    content: '';
+  }
+
+  &:after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+}
+
+/*
+  Size Modifiers
+  ------------------------------------------------------------------------------
+*/
+
+@mixin labelSizeModifier($fontSize, $paddingV, $paddingH) {
+  &,
+  & + .cf-additional-labels {
+    border-radius: 2em;
+    font-size: $fontSize;
+  }
+
+  .cf-label--name {
+    padding: $paddingV $paddingH;
+  }
+
+  &.cf-label--deletable {
+    padding-right: $paddingH - $cf-space-3xs;
+  }
+
+  &.cf-label--deletable .cf-label--name {
+    padding-right: $cf-space-3xs;
+  }
+
+  .cf-label--delete {
+    width: calc(#{$cf-space-3xs} + #{$label-delete-size} + #{$cf-space-3xs});
+    height: calc(#{$cf-space-3xs} + #{$label-delete-size} + #{$cf-space-3xs});
+  }
+}
+
+.cf-label--xs {
+  @include labelSizeModifier($cf-text-base-0, $cf-space-3xs, $cf-space-xs);
+}
+
+.cf-label--sm {
+  @include labelSizeModifier($cf-text-base-0, $cf-space-2xs, $cf-space-s);
+}
+
+.cf-label--md {
+  @include labelSizeModifier($cf-text-base-1, $cf-space-xs, $cf-space-m);
+}
+
+.cf-label--lg {
+  @include labelSizeModifier($cf-text-base-1, $cf-space-xs, $cf-space-m);
+}
+
+.cf-label--colorless {
+  font-weight: $cf-font-weight--medium;
+
+  &,
+  &:hover {
+    background-color: $cf-grey-25;
+    color: $cf-grey-75;
+  }
+}

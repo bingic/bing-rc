@@ -1,0 +1,684 @@
+@import '../../Styles/variables';
+
+/*
+    Tree Style Navigation Menu
+    ----------------------------------------------------------------------------
+*/
+
+.cf-tree-nav {
+  width: 100%;
+  user-select: none;
+  background-image: linear-gradient(
+    13.54deg,
+    rgba($c-pool, 0.1) 36.27%,
+    rgba($c-pool, 0.25) 78.76%,
+    rgba($c-pool, 0.15) 100%
+  );
+  background-color: $cf-grey-5;
+
+  a,
+  a:link,
+  a:visited,
+  a:active {
+    color: inherit;
+  }
+
+  button {
+    text-align: left;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+$cf-tree-nav__header-height: 60px;
+
+.cf-tree-nav--menu {
+  position: absolute;
+  top: $cf-tree-nav__header-height;
+  z-index: $cf-z--nav-menu;
+  left: 0;
+  height: calc(100% - #{$cf-tree-nav__small-height}) !important;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background-image: linear-gradient(
+    13.54deg,
+    rgba($c-pool, 0.1) 36.27%,
+    rgba($c-pool, 0.25) 78.76%,
+    rgba($c-pool, 0.15) 100%
+  );
+  background-color: $cf-grey-5;
+  padding: $cf-space-xs $cf-space-2xs;
+}
+
+.cf-tree-nav__mobile-collapsed .cf-tree-nav--menu {
+  display: none;
+}
+
+.cf-tree-nav--scroll-area {
+  flex: 1 0 0;
+  display: block;
+
+  .cf-dapper-scrollbars--content {
+    display: flex !important;
+    flex-direction: column;
+  }
+}
+
+.cf-tree-nav--children {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.cf-tree-nav--toggle {
+  display: none;
+}
+
+.cf-tree-nav--mobile-toggle {
+  width: $cf-tree-nav__header-height;
+  height: $cf-tree-nav__header-height;
+  flex: 0 0 $cf-tree-nav__header-height;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: $cf-z--nav-menu + 5;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.cf-tree-nav--hamburger {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  &,
+  &:before,
+  &:after {
+    width: floor($cf-tree-nav__width * 0.3);
+    height: $cf-border;
+    border-radius: $cf-border * 0.5;
+  }
+
+  &:before,
+  &:after {
+    background-color: $g20-white;
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 50%;
+  }
+
+  &:before {
+    transform: translate(-50%, 0%) rotate(45deg);
+  }
+
+  &:after {
+    transform: translate(-50%, 0%) rotate(-45deg);
+  }
+
+  .cf-tree-nav__mobile-collapsed & {
+    background-color: $g20-white;
+  }
+
+  .cf-tree-nav__mobile-collapsed &:before {
+    transform: translate(-50%, 300%);
+  }
+  .cf-tree-nav__mobile-collapsed &:after {
+    transform: translate(-50%, -300%);
+  }
+}
+
+%cf-tree-nav--block {
+  display: flex;
+  align-items: center;
+  transition: color $cf-transition-default,
+    background-color $cf-transition-default;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+/*
+  Menu Header
+  ------------------------------------------------------------------------------
+*/
+.cf-tree-nav--header,
+a.cf-tree-nav--header:link,
+a.cf-tree-nav--header:visited,
+a.cf-tree-nav--header:active {
+  display: flex;
+  position: relative;
+  @extend %cf-tree-nav--block;
+  align-items: stretch;
+  height: $cf-tree-nav__header-height;
+
+  .cf-tree-nav--label,
+  .cf-tree-nav--square {
+    z-index: 1;
+  }
+
+  .cf-tree-nav--label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1 0 0;
+    display: flex;
+    font-size: $cf-text-base-1;
+    font-weight: $cf-font-weight--medium;
+    text-align: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+  }
+
+  .cf-tree-nav--square {
+    height: $cf-tree-nav__header-height;
+    width: $cf-tree-nav__header-height;
+  }
+
+  img,
+  svg {
+    height: 22px;
+    width: auto;
+    position: absolute;
+    clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%);
+    transition: $cf-transition-default clip-path;
+
+    .cf-tree-nav.cf-tree-nav__collapsed & {
+      clip-path: polygon(0% 0%, 0% 100%, 0px 100%, 0px 0%);
+    }
+  }
+}
+
+.cf-tree-nav--header {
+  color: $cf-white;
+  background: rgba($cf-grey-95, 0.05);
+
+  &:after {
+    @include createOverlayBase();
+  }
+
+  &:focus:after,
+  &:hover:after {
+    opacity: $cf-hover-active-opacity;
+  }
+}
+
+/*
+  Menu Items
+  ------------------------------------------------------------------------------
+*/
+
+.cf-tree-nav--item {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  position: relative;
+  padding: 0;
+  border-radius: $cf-radius;
+
+  & + & {
+    margin-top: $cf-space-2xs;
+  }
+
+  & > a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    outline: none;
+  }
+
+  &:after {
+    @include createOverlayBase();
+    background: linear-gradient(0deg, rgba($c-pool, 0.05), rgba($c-pool, 0.05)),
+      rgba($cf-grey-95, 0.05);
+  }
+
+  .cf-tree-nav:not(.cf-tree-nav__collapsed) &.cf-tree-nav--item__active:after,
+  &:hover:after,
+  &:focus-within:after {
+    opacity: 1;
+  }
+}
+
+.cf-tree-nav--item-block,
+a.cf-tree-nav--item-block:link,
+a.cf-tree-nav--item-block:visited,
+a.cf-tree-nav--item-block:active {
+  @extend %cf-tree-nav--block;
+  color: $cf-tree-nav__text;
+
+  &:hover,
+  &:focus {
+    color: $cf-tree-nav__text-hover;
+  }
+}
+
+.cf-tree-nav--square {
+  width: $cf-tree-nav__small-height;
+  height: $cf-tree-nav__small-height;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .cf-icon {
+    font-size: 1.5em;
+  }
+}
+
+.cf-tree-nav--menu .cf-tree-nav--label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0 0 0 $cf-space-2xs;
+  flex: 1 0 0;
+  display: flex;
+  font-size: $cf-text-base-1;
+  font-weight: $cf-font-weight--medium;
+  position: absolute;
+  left: $cf-tree-nav__small-height;
+}
+
+/*
+  Sub-Heading
+  ------------------------------------------------------------------------------
+*/
+
+.cf-tree-nav--sub-heading {
+  color: $cf-grey-65;
+  cursor: default;
+
+  &:not(:first-child) {
+    margin-top: $cf-space-2xs;
+  }
+
+  .cf-tree-nav--menu & {
+    display: none;
+  }
+
+  &:not(&__lowercase) {
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  &:after {
+    display: none;
+  }
+}
+
+/*
+  Sub-Menu
+  ------------------------------------------------------------------------------
+*/
+
+.cf-tree-nav--sub-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: $cf-space-2xs;
+
+  .cf-tree-nav.cf-tree-nav__collapsed &,
+  .cf-tree-nav--item:not(.cf-tree-nav--item__active) & {
+    display: none;
+  }
+}
+
+@keyframes menuSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-#{$cf-space-xs});
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.cf-popover__nav .cf-tree-nav--sub-heading,
+.cf-popover__nav .cf-tree-nav--sub-item,
+.cf-tree-nav--sub-menu .cf-tree-nav--sub-item {
+  display: flex;
+  animation: $cf-time-slow 100ms $cf-ease-snappy menuSlideIn forwards;
+  opacity: 0;
+  transform: translateX(-#{$cf-space-xs});
+  position: relative;
+  transition: color $cf-transition-default,
+    background-color $cf-transition-default;
+
+  &:after {
+    @include createOverlayBase();
+  }
+
+  &.cf-tree-nav--sub-item__active,
+  &:not(.cf-tree-nav--sub-heading):hover {
+    background: rgba($cf-grey-95, $cf-hover-active-opacity);
+    border-radius: $cf-radius;
+    cursor: pointer;
+  }
+
+  &:focus:after,
+  &:focus-within:after {
+    opacity: $cf-hover-active-opacity;
+  }
+
+  & > * {
+    font-weight: $cf-font-weight--medium;
+    padding: $cf-space-2xs;
+    color: inherit;
+    flex-grow: 1;
+  }
+}
+
+.cf-tree-nav--sub-menu .cf-tree-nav--sub-item > * {
+  padding-left: $cf-tree-nav__small-height;
+}
+
+.cf-tree-nav--sub-menu-trigger {
+  width: $cf-tree-nav__small-height;
+  height: $cf-tree-nav__small-height;
+  position: absolute;
+  left: 0;
+  top: 0;
+  white-space: nowrap;
+  text-indent: 200%;
+  overflow: hidden;
+  display: none;
+
+  .cf-tree-nav__collapsed & {
+    display: block;
+  }
+}
+
+/*
+  User Widget
+  ------------------------------------------------------------------------------
+*/
+
+$cf-tree-nav--user-block-gap: $cf-marg-a + $cf-border;
+$cf-tree-nav--user-block: $cf-tree-nav__width -
+  ($cf-tree-nav--user-block-gap * 2);
+$cf-tree-nav--avatar-radius: $cf-tree-nav__width * 0.5;
+$cf-tree-nav--user-padding: (
+    ($cf-tree-nav--user-block - $cf-tree-nav--avatar-radius) * 0.5
+  ) - $cf-border;
+
+.cf-tree-nav--user {
+  margin: 0 0 $cf-space-s;
+  background: linear-gradient(0deg, rgba($c-pool, 0.05), rgba($c-pool, 0.05)),
+    rgba($cf-grey-95, 0.05);
+  border-radius: $cf-radius;
+  position: relative;
+
+  &:after {
+    @include createOverlayBase();
+  }
+
+  &:hover:after,
+  &:focus:after {
+    opacity: $cf-hover-active-opacity;
+  }
+}
+
+.cf-tree-nav--avatar {
+  border-radius: $cf-radius;
+  overflow: hidden;
+  position: relative;
+  width: $cf-tree-nav__small-height;
+  height: $cf-tree-nav__small-height;
+  line-height: $cf-tree-nav__small-height;
+  flex-shrink: 0;
+  font-size: 0;
+  white-space: nowrap;
+  text-align: center;
+  color: $cf-white;
+  font-weight: $cf-font-weight--medium;
+
+  &:first-letter {
+    font-size: $cf-text-base-1;
+  }
+
+  @include gradient-diag-up(
+    $cf-tree-nav__user-color-b,
+    $cf-tree-nav__user-color-a
+  );
+}
+
+.cf-tree-nav--user-block {
+  color: $cf-tree-nav__user-text;
+  position: relative;
+  border-radius: $cf-radius;
+  display: flex;
+  transition: background-color $cf-transition-default,
+    color $cf-transition-default, border-color $cf-transition-default;
+
+  .cf-tree-nav--user__expandable &:hover,
+  &:focus {
+    cursor: pointer;
+  }
+
+  .cf-tree-nav--user__expanded &,
+  .cf-tree-nav--user__expanded &:hover,
+  &:focus {
+    position: relative;
+    z-index: $cf-z--nav-menu;
+  }
+}
+
+.cf-tree-nav--avatar-label {
+  display: flex;
+  width: calc(100% - #{$cf-tree-nav__small-height + $cf-space-s});
+  flex: 1 0 0;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  position: absolute;
+  left: $cf-tree-nav__small-height + $cf-space-2xs;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.cf-tree-nav--username,
+.cf-tree-nav--team {
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: $cf-text-line-height;
+}
+
+.cf-tree-nav--username {
+  font-size: $cf-text-base--1;
+  margin-top: $cf-border;
+  font-weight: $cf-font-weight--medium;
+  color: $cf-grey-65;
+}
+
+.cf-tree-nav--user-menu {
+  z-index: $cf-z--nav-menu + 5;
+  border-radius: $cf-radius;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: $cf-space-s $cf-space-s $cf-space-s $cf-tree-nav__small-height;
+  @extend %backdrop-blur-blue;
+
+  .cf-tree-nav--username,
+  .cf-tree-nav--team {
+    margin: 0.75em 1em;
+    display: none;
+  }
+  .cf-tree-nav--team {
+    margin-top: -0.25em;
+  }
+}
+
+.cf-tree-nav--user .cf-tree-nav--sub-heading,
+.cf-tree-nav--user-item,
+a.cf-tree-nav--user-item:link,
+a.cf-tree-nav--user-item:visited,
+a.cf-tree-nav--user-item:active {
+  font-weight: $cf-font-weight--medium;
+  font-size: $cf-text-base-0;
+  padding: $cf-space-2xs $cf-space-s $cf-space-2xs $cf-space-2xs;
+  color: $cf-white;
+  transition: color $cf-transition-default,
+    background-color $cf-transition-default;
+  white-space: nowrap;
+  border-radius: $cf-radius;
+  animation: $cf-time-slow 100ms $cf-ease-snappy menuSlideIn forwards;
+  opacity: 0;
+}
+
+.cf-tree-nav--user .cf-tree-nav--sub-heading {
+  display: block;
+  color: $cf-grey-65;
+}
+
+.cf-tree-nav--user-item:hover,
+a.cf-tree-nav--user-item:hover {
+  cursor: pointer;
+  background: rgba($cf-grey-95, $cf-hover-active-opacity);
+}
+
+/*
+  Banner
+  ------------------------------------------------------------------------------
+*/
+
+.cf-tree-nav--banner {
+  padding: $cf-marg-c;
+  display: block;
+}
+
+.cf-tree-nav--banner-spacer {
+  flex: 1 0 0;
+  width: 100%;
+}
+
+/*
+  Large Screen Display
+  ------------------------------------------------------------------------------
+*/
+
+@media screen and (min-width: $cf-nav-menu--breakpoint) {
+  .cf-tree-nav {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    flex: 0 0 $cf-tree-nav__expanded-width;
+    width: $cf-tree-nav__expanded-width;
+    position: relative;
+    transition: flex-basis $cf-transition-default;
+    z-index: $cf-z--nav-menu;
+    background-image: linear-gradient(
+      13.54deg,
+      rgba($c-pool, 0.1) 36.27%,
+      rgba($c-pool, 0.25) 78.76%,
+      rgba($c-pool, 0.15) 100%
+    );
+    background-color: $cf-grey-5;
+  }
+
+  .cf-tree-nav--menu,
+  .cf-tree-nav__mobile-collapsed .cf-tree-nav--menu {
+    display: flex;
+    background: none;
+    position: relative !important;
+    height: auto !important;
+    top: 0;
+    left: 0;
+    flex: 1 0 0;
+
+    &,
+    .cf-tree-nav__collapsed & {
+      display: flex;
+    }
+  }
+
+  .cf-tree-nav--mobile-toggle {
+    display: none;
+  }
+
+  .cf-tree-nav--toggle {
+    display: block;
+    width: 100%;
+    height: 64px;
+    flex-shrink: 0;
+    position: relative;
+    background: rgba($cf-grey-95, 0.05);
+    color: $cf-tree-nav__toggle-icon;
+    transition: color $cf-transition-default,
+      background-color $cf-transition-default;
+
+    &:after {
+      @include createOverlayBase();
+    }
+
+    &:hover,
+    &:focus {
+      cursor: pointer;
+
+      &:after {
+        opacity: $cf-hover-active-opacity;
+      }
+    }
+
+    > .cf-icon {
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -55%);
+      font-size: 1.25em;
+    }
+  }
+
+  .cf-tree-nav--user-menu {
+    position: absolute;
+    top: 0;
+    left: calc(100% + #{$cf-space-3xs});
+    padding: $cf-space-s;
+  }
+
+  /*
+    Collapsed State
+    ----------------------------------------------------------------------------
+  */
+
+  .cf-tree-nav__collapsed {
+    flex: 0 0 $cf-tree-nav__width;
+    width: $cf-tree-nav__width;
+
+    .cf-tree-nav--menu {
+      .cf-tree-nav--label,
+      .cf-tree-nav--short-label {
+        display: none;
+      }
+    }
+
+    .cf-tree-nav--sub-menu .cf-tree-nav--avatar-label {
+      display: none;
+    }
+
+    .cf-tree-nav--banner {
+      padding: $cf-marg-a;
+    }
+
+    .cf-tree-nav--banner:not(.cf-tree-nav--banner__always-visible) {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+@import '../../../Styles/variables';
+
+/*
+  Confirmation Button Styles
+  ------------------------------------------------------------------------------
+*/
+
+.cf-confirmation-button--container {
+  display: flex;
+  align-items: center;
+  padding: $cf-space-s;
+}
+
+.cf-confirmation-button--label {
+  white-space: nowrap;
+  font-weight: $cf-font-weight--medium;
+  user-select: none;
+  font-size: $cf-text-base-0;
+  padding-right: $cf-space-m;
+}

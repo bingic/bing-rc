@@ -9,6 +9,7 @@
     "sourceMap": true, // 生成相应的'.map'文件。
     "outDir": "build", // 指定输出目录。
     "noImplicitAny": true, // 在表达式和声明上有隐含的any类型时报错。
+    "moduleResolution": "node", // 指定模块解析策略: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). //重要 否则不能解析 @motion/css
     "paths": {
       "@emotion/css": ["./node_modules/@emotion/css/types/index.d.ts"]  //否则引入emotion会报错
     }

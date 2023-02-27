@@ -1,0 +1,273 @@
+@import '../../Styles/variables';
+@import '../../Styles/typography.scss';
+
+$list-item--text-opacity: 0.666;
+
+$list-item--divider-color--light: $cf-grey-25;
+$list-item--divider-text--light: rgba($g20-white, 0.4);
+$list-item--background-light: $c-pool;
+
+$list-item--divider-color--dark: $cf-grey-55;
+$list-item--divider-text--dark: rgba($g0-obsidian, 0.4);
+$list-item--background-dark: $c-pool;
+
+.cf-list {
+  overflow: hidden;
+  border-radius: $cf-radius;
+  padding: $cf-border;
+
+  .cf-dapper-scrollbars--track-y {
+    z-index: 2;
+  }
+}
+
+.cf-list--contents {
+  font-size: 0;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: $cf-space-2xs;
+}
+
+.cf-list-item,
+.cf-list-divider,
+.cf-list-divider__thin {
+  margin-bottom: $cf-border;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/*
+  List Item
+  ------------------------------------------------------------------------------
+*/
+
+@mixin listItemSharedStyles() {
+  user-select: none;
+  position: relative;
+  border-radius: $cf-radius;
+  display: flex;
+  align-items: center;
+}
+
+.cf-list-item {
+  z-index: 1;
+  @include listItemSharedStyles();
+  transition: color $cf-transition-default, background-color 0.25s;
+
+  &.cf-list-item__clickable:hover,
+  &.cf-list-item__clickable.cf-list-item__active {
+    cursor: pointer;
+  }
+}
+
+.cf-list-item--highlight {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  pointer-events: none;
+  border-radius: $cf-radius;
+  z-index: -1;
+  opacity: 1;
+  transition: opacity $cf-transition-default,
+    background-color $cf-transition-default;
+  background-color: transparent;
+}
+
+.cf-list-item:focus {
+  outline: none;
+}
+
+.cf-list-item:hover .cf-list-item--highlight,
+.cf-list-item:focus .cf-list-item--highlight {
+  background-color: rgba($cf-grey-95, 0.1);
+}
+
+.cf-list-item__active .cf-list-item--highlight__light,
+.cf-list-item__active:hover .cf-list-item--highlight__light,
+.cf-list-item__active:focus .cf-list-item--highlight__light {
+  background-color: $list-item--background-light;
+}
+
+.cf-list-item__active .cf-list-item--highlight__dark,
+.cf-list-item__active:hover .cf-list-item--highlight__dark,
+.cf-list-item__active:focus .cf-list-item--highlight__dark {
+  background-color: $list-item--background-dark;
+}
+
+.cf-list-item__light {
+  color: $g20-white;
+}
+.cf-list-item__light.cf-list-item__active,
+.cf-list-item__light.cf-list-item__active:hover {
+  color: $g20-white;
+}
+
+.cf-list-item__dark {
+  color: $g2-kevlar;
+}
+.cf-list-item__dark.cf-list-item__active,
+.cf-list-item__dark.cf-list-item__active:hover {
+  color: $g2-kevlar;
+}
+
+/*
+  List Item Text
+  ------------------------------------------------------------------------------
+*/
+
+.cf-list-item--text {
+  flex: 1;
+
+  .cf-list-item__active & {
+    font-weight: $cf-font-weight--medium;
+  }
+}
+
+.cf-list-item--text__wrap {
+  word-break: break-all;
+  white-space: pre-wrap;
+}
+
+.cf-list-item--text__no-wrap {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/*
+  Divider
+  ------------------------------------------------------------------------------
+*/
+
+.cf-list-divider {
+  color: $cf-grey-35;
+  border-radius: $cf-radius-sm;
+  border-bottom: $cf-border solid $list-item--divider-color--light;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: $cf-font-weight--medium;
+  @extend %type-uppercase;
+}
+
+.cf-list-divider,
+.cf-list-divider__thin {
+  &:hover {
+    cursor: default;
+  }
+}
+
+.cf-list-divider__thin {
+  padding: 0;
+  height: $cf-border;
+}
+
+.cf-list-divider__dark {
+  &.cf-list-divider {
+    border-bottom-color: $list-item--divider-color--dark;
+  }
+  &.cf-list-divider__thin {
+    background-color: $list-item--divider-color--dark;
+  }
+}
+
+.cf-list-divider__light {
+  color: $cf-grey-55;
+  &.cf-list-divider {
+    border-bottom-color: $list-item--divider-color--light;
+  }
+  &.cf-list-divider__thin {
+    background-color: $list-item--divider-color--light;
+  }
+}
+
+/*
+  Disabled State Item
+  ------------------------------------------------------------------------------
+*/
+
+.cf-list-item__disabled {
+  cursor: not-allowed;
+  opacity: 0.3;
+
+  &:hover,
+  &.cf-list-item__clickable:hover {
+    cursor: not-allowed;
+  }
+}
+
+/*
+  List Empty
+  ------------------------------------------------------------------------------
+*/
+
+.cf-list-empty-state {
+  color: $g20-white;
+  text-align: center;
+  opacity: 0.5;
+  user-select: none;
+}
+
+/*
+  Size Modifiers
+  ------------------------------------------------------------------------------
+*/
+
+@mixin listItemSizeModifier($fontSize, $padding, $dividingMargin) {
+  &.cf-list-item,
+  &.cf-list-divider,
+  &.cf-list-link-item > a {
+    font-size: $fontSize;
+    padding: $padding;
+  }
+
+  .cf-list-item--text__wrap,
+  &.cf-list-link-item__wrap > a {
+    padding: ceil($padding * 0.75) 0;
+  }
+
+  &.cf-list-empty-state {
+    font-weight: $cf-font-weight--medium;
+    font-size: $fontSize;
+
+    .cf-list-item--text__no-wrap,
+    .cf-list-item--text__wrap {
+      padding-left: $padding;
+      padding-right: $padding;
+    }
+  }
+
+  &.cf-list-divider:not(:first-child),
+  &.cf-list-divider__thin:not(:first-child) {
+    margin-top: $dividingMargin + $cf-border;
+  }
+  &.cf-list-divider,
+  &.cf-list-divider__thin {
+    margin-bottom: $dividingMargin + $cf-border;
+    &:hover {
+      cursor: default;
+    }
+  }
+}
+
+.cf-list-item__xs {
+  @include listItemSizeModifier($cf-form-xs-font, $cf-space-3xs, $cf-space-2xs);
+}
+
+.cf-list-item__sm {
+  @include listItemSizeModifier($cf-form-sm-font, $cf-space-2xs, $cf-space-2xs);
+}
+
+.cf-list-item__md {
+  @include listItemSizeModifier($cf-form-md-font, $cf-space-xs, $cf-space-xs);
+}
+
+.cf-list-item__lg {
+  @include listItemSizeModifier($cf-form-lg-font, $cf-space-s, $cf-space-s);
+}

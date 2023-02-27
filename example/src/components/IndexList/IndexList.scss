@@ -1,0 +1,239 @@
+@import '../../Styles/variables';
+@import '../../Styles/typography';
+
+/*
+  Index List Styles
+  ------------------------------------------------------------------------------
+*/
+
+$cf-index-list--row-height: 52px;
+$cf-index-list--sort-text: $cf-grey-65;
+
+.cf-index-list {
+  border: 0;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.cf-index-list--header-cell {
+  @include no-user-select();
+  padding: 0 13px;
+  color: $cf-grey-55;
+  white-space: nowrap;
+  height: $cf-index-list--row-height;
+  @extend %type-uppercase;
+  font-size: $cf-text-base-0;
+}
+
+.cf-index-list--cell {
+  height: calc(100% - #{$cf-border});
+  padding: $cf-space-xs;
+  background-color: $cf-card-background--default;
+  font-size: $cf-text-base-0;
+  font-weight: $cf-font-weight--medium;
+  color: $cf-card-text--default;
+  display: flex;
+  align-items: center;
+  transition: opacity $cf-transition-default, color $cf-transition-default;
+
+  &:after {
+    @include createOverlayBase();
+  }
+}
+
+// Alignment modifiers
+.cf-index-list--align-left {
+  text-align: left;
+}
+.cf-index-list--align-left .cf-index-list--cell {
+  justify-content: flex-start;
+}
+
+.cf-index-list--align-right {
+  text-align: right;
+}
+.cf-index-list--align-right .cf-index-list--cell {
+  justify-content: flex-end;
+}
+
+.cf-index-list--align-center {
+  text-align: center;
+}
+.cf-index-list--align-center .cf-index-list--cell {
+  justify-content: center;
+}
+
+// TD Style
+.cf-index-list--row-cell {
+  position: relative;
+  height: $cf-index-list--row-height;
+
+  &:first-child .cf-index-list--cell {
+    border-radius: $cf-radius 0 0 $cf-radius;
+  }
+
+  &:last-child .cf-index-list--cell {
+    border-radius: 0 $cf-radius $cf-radius 0;
+  }
+}
+
+// Row Style
+.cf-index-list--row {
+  @extend %panel-shadow;
+  position: relative;
+}
+
+// Row hover State
+.cf-index-list--row:hover .cf-index-list--cell {
+  color: $cf-card-text--hover;
+  &:after {
+    opacity: $cf-hover-active-opacity;
+  }
+}
+
+// Show cell contents on row hover
+.cf-index-list--show-hover .cf-index-list--cell > * {
+  transition: opacity $cf-transition-default;
+  opacity: 0;
+}
+.cf-index-list--row:hover .cf-index-list--show-hover .cf-index-list--cell > *,
+.cf-index-list--row:focus-within
+  .cf-index-list--show-hover
+  .cf-index-list--cell
+  > * {
+  opacity: 1;
+}
+
+/*
+  Depth Styling
+  ------------------------------------------------------------------------------
+*/
+
+.cf-index-list--row__nested {
+  .cf-index-list--cell {
+    background-color: $g4-onyx;
+  }
+  &:hover .cf-index-list--cell {
+    background-color: $g5-pepper;
+  }
+  &.cf-index-list--row__disabled .cf-index-list--cell {
+    background-color: rgba($g4-onyx, 0.5);
+  }
+  &.cf-index-list--row__disabled:hover .cf-index-list--cell {
+    background-color: rgba($g4-onyx, 0.7);
+  }
+  .cf-index-list--empty-cell {
+    background-color: rgba($g4-onyx, 0.5);
+  }
+}
+
+/*
+  Row Disabled State
+  ------------------------------------------------------------------------------
+*/
+.cf-index-list--row.cf-index-list--row__disabled
+  .cf-index-list--row-cell
+  .cf-index-list--cell {
+  background-color: $cf-card-background--disabled;
+  color: $cf-card-text--disabled;
+  cursor: not-allowed;
+  opacity: $cf-disabled-opacity;
+
+  &:after {
+    opacity: 0;
+  }
+
+  a:link,
+  a:visited,
+  a:hover,
+  a:active {
+    transition: color $cf-transition-default, opacity $cf-transition-default;
+    opacity: 0.7;
+  }
+}
+
+// Row Disabled Hover State
+.cf-index-list--row.cf-index-list--row__disabled:hover
+  .cf-index-list--row-cell
+  .cf-index-list--cell {
+  background-color: $cf-card-background--disabled;
+  color: $cf-card-text--disabled;
+
+  a:link,
+  a:visited,
+  a:hover,
+  a:active {
+    opacity: 0.9;
+  }
+}
+
+// Empty state
+.cf-index-list--empty-cell {
+  background-color: $cf-card-background--disabled;
+  border-radius: $cf-radius;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  color: $cf-empty-state-text;
+}
+
+/*
+  Sortable Header Styling
+  ------------------------------------------------------------------------------
+*/
+
+.cf-index-list--sort-arrow {
+  display: inline-block;
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
+  margin-left: $cf-space-3xs;
+  opacity: 0;
+  position: relative;
+  top: -1px;
+  transition: opacity $cf-transition-default, transform $cf-transition-default;
+
+  > span.cf-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.cf-index-list--header-cell.cf-index-list--sortable {
+  transition: color $cf-transition-default;
+
+  &:hover {
+    cursor: pointer;
+    color: $c-pool;
+  }
+}
+
+.cf-index-list--header-cell.cf-index-list--sort-ascending,
+.cf-index-list--header-cell.cf-index-list--sort-descending {
+  color: $cf-index-list--sort-text;
+}
+
+.cf-index-list--sort-ascending .cf-index-list--sort-arrow {
+  opacity: 1;
+  transform: rotate(180deg);
+}
+
+.cf-index-list--sort-descending .cf-index-list--sort-arrow {
+  opacity: 1;
+  transform: rotate(00deg);
+}
+
+/*
+  Margin for "Name" column in tables
+  ------------------------------------------------------------------------------
+*/
+
+.cf-index-list--labels {
+  margin-left: $cf-space-2xs;
+}
+
+.cf-index-list--row-cell .cf-index-list--cell a {
+  white-space: nowrap;
+}

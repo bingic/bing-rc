@@ -1,0 +1,52 @@
+@import '../../../Styles/variables.scss';
+
+/*
+  Editable Name for Resource Cards
+  ------------------------------------------------------------------------------
+*/
+
+.cf-resource-name {
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+  max-width: calc(100% - 100px);
+}
+
+.cf-resource-name--text {
+  display: flex;
+  align-items: center;
+
+  font-size: $cf-card--name-font-size;
+  font-weight: $cf-card--name-font-weight;
+  font-family: $cf-text-font;
+  color: $g17-whisper;
+  user-select: none;
+
+  &:hover {
+    color: $g17-whisper;
+  }
+}
+
+.cf-resource-name--text__link {
+  .cf-resource-card__disabled & {
+    opacity: 0.5;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.cf-resource-name--text__error {
+  color: $c-dreamsicle;
+}
+.cf-resource-name--text__error__link {
+  &:hover {
+    cursor: pointer;
+    color: $c-tungsten;
+  }
+}
+
+.cf-resource-name--text-gap {
+  margin-right: $cf-marg-b;
+}

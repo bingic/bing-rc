@@ -6,9 +6,14 @@ import terser from '@rollup/plugin-terser'; // 压缩代码
 import replace from '@rollup/plugin-replace'; // 替换环境变量
 import serve from 'rollup-plugin-serve'; // 本地服务 结合rollup-plugin-livereload使用
 import livereload from 'rollup-plugin-livereload'; // 热更新 结合rollup-plugin-serve使用
+import copy from 'rollup-plugin-copy' // 复制文件
 import htmlTemplate from 'rollup-plugin-generate-html-template'; // 生成html模板
 import typescript from '@rollup/plugin-typescript';
+import {writeFileSync} from "fs";
+import sass from 'rollup-plugin-sass';
 
+
+const isProductionBuild = process.env.NODE_ENV === 'production'
 
 export default {
 
@@ -26,9 +31,10 @@ export default {
     context: 'null',
     moduleContext: 'null',
     plugins: [
+
         clear({
             targets: 'dist/*', // 清除dist文件夹下的所有文件
-            runOnce: true // 只清除一次
+            // runOnce: true // 只清除一次
         }),
         nodeResolve({
             jsnext: true,
@@ -38,6 +44,16 @@ export default {
         commonjs({
             include: ["node_modules/**"],
         }),
+
+        sass({
+            output: styles => {
+                writeFileSync('dist/index.css', `@charset "UTF-8"; ${styles}`)
+            },
+            options: {
+                outputStyle: isProductionBuild ? 'compressed' : 'expanded',
+            },
+        }),
+
         replace({
             preventAssignment: true,
             'process.env.NODE_ENV': JSON.stringify('production') // 否则会报：process is not defined的错
@@ -57,6 +73,13 @@ export default {
             watch: 'dist', // 监听dist文件夹下的文件变化
             verbose: false, // 输出日志
             delay: 500, // 延迟刷新
+        }),
+        copy({
+            targets: [
+                {src: 'src/Styles/Fonts', dest: 'dist'},
+                {src: 'src/Styles/variables.scss', dest: 'dist'},
+                {src: 'src/**/Images/*', dest: 'dist/Images'},
+            ],
         }),
 
         serve('dist'), // 本地服务

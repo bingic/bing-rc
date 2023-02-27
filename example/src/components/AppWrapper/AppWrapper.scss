@@ -1,0 +1,54 @@
+@import '../../Styles/variables';
+
+/*
+   Clockface Application Wrapper
+   -----------------------------------------------------------------------------
+*/
+
+.clockface--app-wrapper {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  color: $cf-text-default;
+  background-color: $cf-page--background;
+  overflow: hidden;
+  font-size: $cf-body-text;
+}
+
+.clockface--app-wrapper__standard,
+.clockface--app-wrapper__funnel {
+  flex-direction: column;
+}
+
+@media screen and (min-width: $cf-nav-menu--breakpoint) {
+  .clockface--app-wrapper__standard {
+    flex-direction: row;
+  }
+}
+
+/*
+   Presentation Mode
+   -----------------------------------------------------------------------------
+*/
+
+.clockface--app-wrapper__presentation-mode {
+  .cf-nav,
+  .cf-tree-nav, 
+  .cf-page-header,
+  .cf-page-control-bar,
+  .cf-nav--mask,
+  .cf-nav--toggle {
+    display: none;
+  }
+
+  .cf-page-contents__fixed,
+  .cf-page-contents__fluid,
+  .cf-page-contents.cf-dapper-scrollbars .cf-page-contents__fluid,
+  .cf-page-contents.cf-dapper-scrollbars .cf-page-contents__fixed {
+    padding: $cf-page--gutter-xs;
+  }
+}

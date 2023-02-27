@@ -1,0 +1,161 @@
+@import '../../Styles/variables';
+
+.cf-accordion {
+  width: 100%;
+  margin-bottom: $cf-space-3xs;
+}
+
+.cf-accordion--icon-container {
+  position: relative;
+  // min-width: $cf-space-s;
+}
+
+.cf-accordion--icon-container-left {
+  margin-right: $cf-space-xs;
+}
+.cf-accordion--icon-container-right {
+  margin-left: $cf-space-xs;
+}
+
+.cf-accordion--icon {
+  transition: transform $cf-transition-default;
+  color: $cf-white;
+  width: $cf-text-base-0;
+  height: $cf-text-base-0;
+  display: block;
+}
+
+.cf-accordion--icon-caret-right-new {
+  transform: translateY(10%) rotate(-90deg);
+  font-size: 18px;
+}
+
+.cf-accordion--icon-caret-down-new {
+  transform: translateY(-10%) rotate(0deg);
+  font-size: 18px;
+}
+
+.cf-accordion--header {
+  display: flex;
+  width: 100%;
+  min-height: $cf-form-lg-height;
+  border-radius: $cf-radius;
+  background-color: $cf-grey-25;
+  align-items: center;
+  outline: none;
+  padding: $cf-space-s;
+  position: relative;
+  color: $cf-white;
+  font: inherit;
+  cursor: default;
+}
+
+.cf-accordion--header--clickable {
+  &:after {
+    @include createOverlayBase();
+  }
+
+  &,
+  label,
+  label:hover {
+    cursor: pointer;
+  }
+
+  &:hover:after,
+  &:focus:after {
+    opacity: $cf-hover-active-opacity;
+  }
+}
+
+.cf-accordion--header--active {
+  background-color: $g6-smoke;
+  border-radius: $cf-radius $cf-radius 0px 0px;
+}
+
+.cf-accordion--header--content {
+  width: 100%;
+}
+
+.cf-accordion--body--disabled,
+.cf-accordion--header.cf-accordion--header--disabled,
+.cf-accordion--header.cf-accordion--header--disabled:hover {
+  opacity: $cf-disabled-opacity;
+
+  &:after {
+    display: none;
+  }
+
+  &,
+  label,
+  label:hover {
+    cursor: not-allowed;
+  }
+}
+
+.cf-accordion--body-container {
+  &--collapsed {
+    animation: cubic-bezier(0.4, 0, 0.2, 1) collapse-accordion forwards;
+    animation-duration: 250ms;
+  }
+
+  &--expanded {
+    animation: cubic-bezier(0.4, 0, 0.2, 1) expand-accordion forwards;
+    animation-duration: 250ms;
+  }
+
+  .cf-accordion--body:last-child {
+    border-radius: 0px 0px $cf-radius $cf-radius;
+  }
+}
+.cf-accordion--body-container--disable-animation {
+  animation-duration: 0ms;
+}
+
+.cf-accordion--body {
+  @extend .cf-accordion--header;
+  min-height: $cf-form-md-height;
+  padding: $cf-form-md-padding;
+  background-color: $cf-grey-15;
+  border-radius: 0px;
+
+  &:hover {
+    background-color: $cf-grey-15;
+  }
+}
+
+.cf-accordion--body-alignment-left {
+  padding-left: $cf-form-md-height;
+}
+
+.cf-accordion--body-alignment-right {
+  padding-right: $cf-form-md-height;
+}
+@mixin -content-visible {
+  max-height: 2000px;
+  opacity: 1;
+  visibility: inherit;
+}
+
+@mixin -content-hidden {
+  max-height: 0;
+  opacity: 0;
+  visibility: hidden;
+}
+
+@keyframes collapse-accordion {
+  0% {
+    @include -content-visible;
+  }
+  100% {
+    @include -content-hidden;
+  }
+}
+
+@keyframes expand-accordion {
+  0% {
+    @include -content-hidden;
+  }
+  100% {
+    @include -content-visible;
+  }
+}

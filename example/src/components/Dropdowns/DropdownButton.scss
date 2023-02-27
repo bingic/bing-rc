@@ -1,0 +1,128 @@
+@import '../../Styles/variables';
+
+/*
+  Dropdown Button
+  ------------------------------------------------------------------------------
+*/
+
+/* Button */
+.cf-dropdown--button {
+  position: relative;
+
+  & > * {
+    align-items: center;
+    justify-content: flex-start;
+    display: flex;
+    width: 100%;
+  }
+
+  &.active {
+    z-index: 510;
+  }
+}
+
+.cf-dropdown--icon {
+  flex-shrink: 0;
+  margin-right: $cf-space-2xs;
+}
+
+.cf-dropdown--selected {
+  text-align: left;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  flex-grow: 1;
+  margin-right: auto;
+
+  &.header-container input {
+    /** removing radius so it blends better with the button to the right of it */
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+
+.cf-dropdown--button {
+  &.cf-dropdown__error,
+  &.cf-dropdown__error:hover,
+  &.cf-dropdown__error:focus {
+    border: $cf-border solid $cf-input-border--error;
+    box-shadow: none;
+  }
+}
+
+.cf-dropdown__loading {
+  color: #fff !important;
+}
+
+/** small size is the default */
+.header-container--button {
+  width: $cf-form-sm-width;
+  justify-content: center;
+  /** removing radius so it blends better with the input to the left of it */
+  border-bottom-left-radius: 0px;
+  border-top-left-radius: 0px;
+
+  & .cf-dropdown--caret {
+    margin: auto 0 auto 0;
+  }
+}
+
+.cf-dropdown--caret {
+  font-size: $cf-text-base-1;
+  margin: auto 0 auto $cf-space-2xs;
+  transition: transform $cf-transition-default;
+  flex-shrink: 0;
+
+  .cf-dropdown__up & {
+    transform: rotate(-180deg);
+  }
+
+  .cf-dropdown__up .active & {
+    transform: rotate(0deg);
+  }
+
+  .cf-dropdown__down & {
+    transform: rotate(0deg);
+  }
+
+  .cf-dropdown__down .active & {
+    transform: rotate(-180deg);
+  }
+}
+
+.cf-dropdown--trailing-icon {
+  font-size: $cf-text-base-1;
+  margin: auto 0 auto $cf-space-2xs;
+  color: $cf-grey-65;
+}
+
+/* Button Size Modifiers */
+@mixin dropdownSizeModifier($height) {
+  .cf-dropdown__down & + .cf-dropdown--menu-container {
+    top: $height;
+  }
+  .cf-dropdown__up & + .cf-dropdown--menu-container {
+    bottom: $height;
+  }
+}
+
+.cf-dropdown--button.cf-button-disabled {
+  cursor: not-allowed;
+  opacity: $cf-disabled-opacity;
+}
+
+.cf-dropdown--button.cf-button-xs {
+  @include dropdownSizeModifier($cf-form-xs-height);
+}
+
+.cf-dropdown--button.cf-button-sm {
+  @include dropdownSizeModifier($cf-form-sm-height);
+}
+
+.cf-dropdown--button.cf-button-md {
+  @include dropdownSizeModifier($cf-form-md-height);
+}
+
+.cf-dropdown--button.cf-button-lg {
+  @include dropdownSizeModifier($cf-form-lg-height);
+}

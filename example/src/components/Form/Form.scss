@@ -1,0 +1,117 @@
+@import '../../Styles/variables';
+
+/*
+  Form Styles
+  ------------------------------------------------------------------------------
+*/
+
+.cf-form--wrapper {
+  width: 100%;
+}
+
+/*
+  Form Elements
+  ------------------------------------------------------------------------------
+*/
+.cf-form--element {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin-bottom: $cf-space-s;
+}
+
+/*
+  Form Group Addons
+  ------------------------------------------------------------------------------
+*/
+.cf-form--label,
+.cf-form--help-text,
+.cf-form--element-error {
+  text-align: left;
+  display: inline-block;
+  font-size: $cf-text-base-1;
+  font-weight: $cf-font-weight--regular;
+  @extend %no-user-select;
+}
+
+.cf-form--label {
+  width: 100%;
+  color: $cf-label--default;
+  margin: 0 0 $cf-space-2xs 0;
+  display: flex;
+  align-items: center;
+}
+
+.cf-form--label-text {
+  margin-right: $cf-space-2xs;
+
+  &:only-child {
+    margin-right: 0;
+  }
+}
+
+.cf-form--help-text {
+  color: $cf-grey-65;
+  margin: $cf-space-2xs 0 0;
+  font-weight: $cf-font-weight--regular;
+}
+
+.cf-form--label + .cf-form--help-text {
+  margin: 0 0 $cf-space-s;
+}
+
+.cf-form--element-error {
+  color: $c-fire;
+  margin: $cf-space-2xs 0 0 0;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+.cf-form--label-required {
+  color: $c-curacao;
+}
+
+/*
+  Form Divider
+  ------------------------------------------------------------------------------
+*/
+.cf-form--divider {
+  width: 100%;
+  height: $cf-form-sm-height - $cf-marg-b;
+
+  &-line {
+    height: $cf-border;
+    background-color: $cf-grey-25;
+    margin: (($cf-form-sm-height - $cf-marg-b) * 0.5) 0;
+    border-radius: $cf-border * 0.5;
+  }
+}
+
+/*
+  Form Footer
+  ------------------------------------------------------------------------------
+*/
+.cf-form--footer {
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: $cf-space-m;
+  margin-bottom: 0;
+
+  > * {
+    margin: 0 $cf-space-2xs;
+  }
+}
+
+/*
+  Form Box
+  ------------------------------------------------------------------------------
+*/
+.cf-form--box {
+  width: 100%;
+  border-radius: $cf-radius;
+  background-color: $cf-card-background--default;
+  padding: $cf-space-xs;
+  min-height: $cf-form-sm-height;
+}

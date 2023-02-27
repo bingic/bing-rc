@@ -1,0 +1,112 @@
+@import '../../Styles/variables';
+
+/*
+  TextArea Styles
+  ------------------------------------------------------------------------------
+*/
+
+.cf-text-area {
+  position: relative;
+}
+
+.cf-text-area--input {
+  z-index: $cf-input--field-z;
+  width: 100%;
+  height: 100%;
+  font-weight: $cf-font-weight--medium;
+  resize: none;
+  transition: $cf-input--transition;
+  outline: none;
+  appearance: none;
+  border-radius: $cf-radius;
+  background-color: $cf-input-background--default;
+  border: $cf-border solid $cf-input-border--default;
+  color: $cf-input-text--default;
+
+  &:hover {
+    background-color: $cf-input-background--hover;
+    border-color: $cf-input-border--hover;
+    color: $cf-input-text--hover;
+  }
+
+  &:focus {
+    background-color: $cf-input-background--focused;
+    color: $cf-input-text--focused;
+    border-color: $cf-input-border--focused;
+    box-shadow: 0 0 6px 0 $cf-input-border--focused;
+  }
+
+  &[disabled],
+  &[disabled]:hover {
+    border-color: $cf-input-border--disabled;
+    background-color: $cf-input-background--disabled;
+    color: $cf-input-text--disabled;
+    cursor: not-allowed;
+    opacity: $cf-disabled-opacity;
+  }
+
+  &::-webkit-text-area-placeholder {
+    color: $cf-input--placeholder-text;
+    font-weight: $cf-font-weight--medium !important;
+  }
+  &::-moz-placeholder {
+    color: $cf-input--placeholder-text;
+    font-weight: $cf-font-weight--medium !important;
+  }
+  &:-ms-text-area-placeholder {
+    color: $cf-input--placeholder-text;
+    font-weight: $cf-font-weight--medium !important;
+  }
+  &:-moz-placeholder {
+    color: $cf-input--placeholder-text;
+    font-weight: $cf-font-weight--medium !important;
+  }
+
+  .cf-text-area__regular-font & {
+    font-family: $cf-text-font;
+  }
+  .cf-text-area__monospace-font & {
+    font-family: $cf-code-font;
+  }
+}
+
+/*
+  Error State
+  ------------------------------------------------------------------------------
+*/
+.cf-text-area__error {
+  .cf-text-area--input {
+    border-color: $cf-input-border--error;
+  }
+  .cf-text-area--input:hover {
+    border-color: $cf-input-border--error-hover;
+  }
+  .cf-text-area--input:focus {
+    border-color: $cf-input-border--error-focused;
+    box-shadow: 0 0 6px 0 $cf-input-border--error-focused;
+  }
+}
+
+/*
+  Size Modifiers
+  ------------------------------------------------------------------------------
+*/
+@mixin textAreaSizeModifier($fontSize, $padding) {
+  .cf-text-area--input {
+    font-size: $fontSize;
+    padding: $padding;
+  }
+}
+
+.cf-text-area__xs {
+  @include textAreaSizeModifier($cf-form-xs-font, $cf-form-xs-padding);
+}
+.cf-text-area__sm {
+  @include textAreaSizeModifier($cf-form-sm-font, $cf-form-sm-padding);
+}
+.cf-text-area__md {
+  @include textAreaSizeModifier($cf-form-md-font, $cf-form-md-padding);
+}
+.cf-text-area__lg {
+  @include textAreaSizeModifier($cf-form-lg-font, $cf-form-lg-padding);
+}

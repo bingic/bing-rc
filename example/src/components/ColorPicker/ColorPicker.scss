@@ -1,0 +1,96 @@
+@import '../../Styles/variables';
+
+/*
+  Color Picker Widget
+  ------------------------------------------------------------------------------
+*/
+
+$color-picker--margin: 0;
+
+.cf-color-picker {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.cf-color-picker--swatches {
+  margin-bottom: $cf-marg-b;
+  position: relative;
+  padding: $color-picker--margin;
+  border-radius: $cf-radius;
+  overflow: hidden;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.cf-color-picker--swatch {
+  width: 10%;
+  padding-bottom: 10%;
+  position: relative;
+  float: left;
+  opacity: 1;
+  transition: opacity $cf-transition-default;
+
+  > span {
+    position: absolute;
+    top: $color-picker--margin;
+    left: $color-picker--margin;
+    right: $color-picker--margin;
+    bottom: $color-picker--margin;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0, 0);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: $g20-white;
+    opacity: 0;
+    transition: opacity $cf-transition-default, transform $cf-transition-default;
+    box-shadow: 0 0 4px 1px rgba($g0-obsidian, 0.25);
+  }
+
+  &:hover {
+    &:after {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1, 1);
+    }
+  }
+
+  &__top-left > span {
+    border-top-left-radius: $cf-radius;
+  }
+
+  &__top-right > span {
+    border-top-right-radius: $cf-radius;
+  }
+
+  &__bottom-left > span {
+    border-bottom-left-radius: $cf-radius;
+  }
+
+  &__bottom-right > span {
+    border-bottom-right-radius: $cf-radius;
+  }
+}
+
+.cf-color-picker--form {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.cf-input.cf-color-picker--input {
+  flex: 1 0 0;
+  margin-right: $cf-marg-a;
+
+  > input {
+    padding-left: $cf-marg-d - $cf-marg-a;
+  }
+}

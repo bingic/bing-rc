@@ -1,0 +1,478 @@
+@import '../../Styles/variables.scss';
+@import '../../Styles/typography.scss';
+
+/*
+  Tabs Component
+  ------------------------------------------------------------------------------
+*/
+
+$cf-tab--text: $cf-grey-55;
+$cf-tab--text-hover: $cf-white;
+$cf-tab--text-active: $cf-white;
+$cf-tab--border-color: $cf-grey-35;
+
+$cf-tab-dropdown--label: $cf-grey-55;
+$cf-tab-dropdown--label-hover: $cf-white;
+$cf-tab-dropdown--item-text: $cf-white;
+$cf-tab-dropdown--item-text-active: $cf-white;
+
+.cf-tabs {
+  display: flex;
+  align-items: stretch;
+
+  &__horizontal {
+    width: 100%;
+    flex-direction: row;
+    border-bottom: $cf-border solid $cf-tab--border-color;
+  }
+
+  &__vertical {
+    height: 100%;
+    flex-direction: column;
+    border-right: $cf-border solid $cf-tab--border-color;
+  }
+
+  &__align-left {
+    justify-content: flex-start;
+  }
+  &__align-center {
+    justify-content: center;
+  }
+  &__align-right {
+    justify-content: flex-end;
+  }
+}
+
+.cf-tabs--tab,
+a.cf-tabs--tab:link,
+a.cf-tabs--tab:active,
+a.cf-tabs--tab:visited {
+  flex-direction: row;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  transition: color $cf-transition-default;
+  color: $cf-tab--text;
+  position: relative;
+
+  &:focus,
+  &:hover {
+    cursor: pointer;
+    color: $cf-tab--text-hover;
+    outline: none;
+  }
+
+  > .cf-icon {
+    display: inline-block;
+  }
+}
+
+.cf-tabs--state-indicator {
+  position: absolute;
+  background-color: $cf-white;
+  opacity: 0;
+  transition: opacity $cf-transition-default;
+
+  .cf-tabs__horizontal & {
+    width: 100%;
+    height: 0;
+    left: 0;
+    bottom: 0;
+  }
+
+  .cf-tabs__vertical & {
+    height: 100%;
+    width: 0;
+    top: 0;
+    right: 0;
+  }
+}
+
+.cf-tabs--tab-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1 0 0;
+  font-weight: $cf-font-weight--medium;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.cf-tabs .cf-tabs--tab-label {
+  @extend %type-uppercase;
+}
+
+// Active State
+
+.cf-tabs--tab__active,
+a.cf-tabs--tab__active:link,
+a.cf-tabs--tab__active:visited,
+a.cf-tabs--tab__active:active,
+a.cf-tabs--tab.cf-tabs--tab__active:hover,
+.cf-tabs--tab__active:hover {
+  color: $cf-tab--text-active;
+
+  .cf-tabs__vertical & .cf-tabs--state-indicator {
+    width: $cf-border;
+    opacity: 1;
+    margin-right: -$cf-border;
+  }
+
+  .cf-tabs__horizontal & .cf-tabs--state-indicator {
+    opacity: 1;
+  }
+}
+
+/*
+  Tab Contents
+  ------------------------------------------------------------------------------
+*/
+
+.cf-tabs--tab-contents {
+  position: relative;
+  flex: 1 0 0;
+}
+
+/*
+  Tab Size Modifiers 
+  ------------------------------------------------------------------------------
+*/
+
+@mixin tabSizeModifier($fontSize, $tabPadding) {
+  .cf-tabs--tab {
+    padding: 0 0 $tabPadding;
+
+    > .cf-icon {
+      margin-right: ceil($tabPadding * 0.66);
+      font-size: 1.25em;
+    }
+
+    > .cf-tabs--tab-dismiss {
+      margin-left: $tabPadding;
+    }
+
+    .cf-tabs--tab-label {
+      font-size: $fontSize;
+    }
+  }
+  &.cf-tabs__horizontal .cf-tabs--tab__active .cf-tabs--state-indicator {
+    height: $cf-border;
+    margin-bottom: -$cf-border;
+  }
+
+  &.cf-tabs__vertical .cf-tabs--tab {
+    padding-right: $tabPadding;
+  }
+
+  &.cf-tabs__horizontal {
+    margin-bottom: $cf-space-s;
+
+    &.cf-tabs__align-left {
+      .cf-tabs--tab {
+        margin-right: $tabPadding * 2;
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+    &.cf-tabs__align-center {
+      .cf-tabs--tab {
+        margin-left: $tabPadding;
+        margin-right: $tabPadding;
+
+        &:first-child {
+          margin-left: 0;
+        }
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+    &.cf-tabs__align-right {
+      .cf-tabs--tab {
+        margin-left: $tabPadding * 2;
+
+        &:first-child {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+
+  &.cf-tabs__horizontal + .cf-tabs--tab-contents {
+    padding-top: $tabPadding;
+  }
+  &.cf-tabs__vertical + .cf-tabs--tab-contents {
+    padding-left: $tabPadding;
+  }
+}
+
+.cf-tabs__xs {
+  @include tabSizeModifier($cf-text-base-0, $cf-space-2xs);
+}
+.cf-tabs__sm {
+  @include tabSizeModifier($cf-text-base-0, $cf-space-xs);
+}
+.cf-tabs__md {
+  @include tabSizeModifier($cf-text-base-1, $cf-space-s);
+}
+.cf-tabs__lg {
+  @include tabSizeModifier($cf-text-base-1, $cf-space-s);
+}
+
+/*
+  Tab Dismiss Button
+  ------------------------------------------------------------------------------
+*/
+
+.cf-tabs--tab-dismiss {
+  position: relative;
+  background-color: transparent;
+  border: 0;
+  outline: none;
+  width: $cf-space-xs;
+  height: 100%;
+
+  &:before,
+  &:after {
+    content: '';
+    min-width: $cf-space-xs;
+    height: $cf-border;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    background-color: $cf-grey-55;
+    transition: background-color $cf-transition-default;
+  }
+
+  &:before {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+  &:after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+
+  .cf-tabs--tab:hover & {
+    opacity: 1;
+  }
+
+  .cf-tabs--tab:hover &:hover {
+    cursor: pointer;
+    opacity: 1;
+
+    &:before,
+    &:after {
+      background-color: $cf-white;
+    }
+  }
+
+  &:active:before,
+  &:active:after,
+  &:hover:active:before,
+  &:hover:active:after,
+  .cf-tabs--tab:hover &:active:before,
+  .cf-tabs--tab:hover &:active:after,
+  .cf-tabs--tab:hover &:hover:active:before,
+  .cf-tabs--tab:hover &:hover:active:after {
+    background-color: $g20-white;
+  }
+}
+
+/*
+  Tabs Dropdown
+  ------------------------------------------------------------------------------
+*/
+
+.cf-tabs--dropdown {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  position: relative;
+  border-bottom: $cf-border solid $cf-tab--border-color;
+
+  &.cf-tabs--dropdown__visible {
+    z-index: $cf-z--tabs-dropdown;
+  }
+}
+
+.cf-tabs--dropdown-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1 0 0;
+  font-weight: $cf-font-weight--medium;
+  color: $cf-tab-dropdown--label;
+  transition: color $cf-transition-default;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.cf-tabs--dropdown-icon {
+  position: absolute;
+  top: 50%;
+  display: block;
+  transform: translate(50%, -50%);
+  transition: transform $cf-transition-default;
+
+  .cf-tabs--dropdown__visible & {
+    transform: translate(50%, -50%) rotate(180deg);
+  }
+}
+
+.cf-tabs--dropdown-label:hover {
+  cursor: pointer;
+  color: $cf-tab-dropdown--label-hover;
+}
+
+.cf-tabs--dropdown__visible .cf-tabs--dropdown-label,
+.cf-tabs--dropdown__visible .cf-tabs--dropdown-label:hover {
+  color: $cf-tab-dropdown--label-hover;
+}
+
+.cf-tabs--dropdown-menu {
+  position: absolute;
+  top: calc(100% + #{$cf-border * 2});
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  flex-direction: column;
+  align-items: stretch;
+  @include panel-shadow();
+  border-radius: $cf-radius;
+  @extend %backdrop-blur-dark;
+
+  .cf-tabs--dropdown__hidden & {
+    display: none;
+  }
+
+  .cf-tabs--dropdown__visible & {
+    display: flex;
+  }
+}
+
+.cf-tabs--dropdown__align-left {
+  .cf-tabs--dropdown-label,
+  .cf-tabs--tab {
+    text-align: left;
+  }
+}
+
+.cf-tabs--dropdown__align-center {
+  .cf-tabs--dropdown-label,
+  .cf-tabs--tab {
+    text-align: center;
+  }
+}
+
+.cf-tabs--dropdown__align-right {
+  .cf-tabs--dropdown-label,
+  .cf-tabs--tab {
+    text-align: right;
+  }
+}
+
+// Update styles for dismiss button within dropdown mode
+.cf-tabs--dropdown-menu .cf-tabs--tab .cf-tabs--tab-dismiss {
+  position: absolute;
+  top: 50%;
+}
+
+@mixin responsiveTabSizeModifier($fontSize, $tabPadding, $tabHeight) {
+  .cf-tabs--dropdown-label {
+    font-size: $fontSize;
+    height: floor($tabHeight * 1.35);
+    line-height: floor($tabHeight * 1.35);
+    padding: 0 $tabPadding;
+  }
+
+  .cf-tabs--tab {
+    font-size: $fontSize;
+    padding: $tabPadding;
+  }
+
+  &.cf-tabs--dropdown__align-right .cf-tabs--dropdown-label {
+    padding-right: floor($tabHeight * 1.35);
+  }
+
+  .cf-tabs--dropdown-icon {
+    font-size: $fontSize;
+    right: floor($tabHeight * 1.35) * 0.5;
+  }
+
+  .cf-tabs--tab:first-child {
+    border-radius: $cf-radius $cf-radius 0 0;
+  }
+
+  .cf-tabs--tab:last-child {
+    border-radius: 0 0 $cf-radius $cf-radius;
+  }
+
+  .cf-tabs--tab,
+  a.cf-tabs--tab:link,
+  a.cf-tabs--tab:visited,
+  a.cf-tabs--tab:active {
+    color: $cf-tab-dropdown--item-text;
+  }
+
+  .cf-tabs--tab:hover,
+  a.cf-tabs--tab:hover {
+    color: $cf-tab-dropdown--item-text-active;
+  }
+
+  .cf-tabs--tab__active,
+  a.cf-tabs--tab__active:link,
+  a.cf-tabs--tab__active:visited,
+  a.cf-tabs--tab__active:active {
+    color: $cf-tab-dropdown--item-text-active;
+    background-color: $c-pool;
+  }
+
+  .cf-tabs--tab-dismiss {
+    width: $tabHeight;
+    height: $tabHeight;
+  }
+
+  &.cf-tabs--dropdown__align-left .cf-tabs--tab-dismiss,
+  &.cf-tabs--dropdown__align-center .cf-tabs--tab-dismiss {
+    right: $tabHeight * 0.5;
+    transform: translate(50%, -50%);
+  }
+
+  &.cf-tabs--dropdown__align-right .cf-tabs--tab-dismiss {
+    left: $tabHeight * 0.5;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.cf-tabs--dropdown__xs {
+  @include responsiveTabSizeModifier(
+    $cf-text-base-0,
+    $cf-space-3xs,
+    $cf-form-xs-height
+  );
+}
+
+.cf-tabs--dropdown__sm {
+  @include responsiveTabSizeModifier(
+    $cf-text-base-0,
+    $cf-space-2xs,
+    $cf-form-sm-height
+  );
+}
+
+.cf-tabs--dropdown__md {
+  @include responsiveTabSizeModifier(
+    $cf-text-base-1,
+    $cf-space-2xs,
+    $cf-form-md-height
+  );
+}
+
+.cf-tabs--dropdown__lg {
+  @include responsiveTabSizeModifier(
+    $cf-text-base-1,
+    $cf-space-xs,
+    $cf-form-lg-height
+  );
+}

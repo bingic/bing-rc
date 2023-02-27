@@ -1,0 +1,245 @@
+@import '../../Styles/variables';
+
+/*
+  FlexBox Utility
+  ------------------------------------------------------------------------------
+*/
+
+.cf-flex-box {
+  display: flex;
+  flex-wrap: nowrap;
+
+  &.cf-flex-box__stretch-w {
+    width: 100%;
+  }
+
+  &.cf-flex-box__stretch-h {
+    height: 100%;
+  }
+}
+
+/*
+  Flex Direction
+  ------------------------------------------------------------------------------
+*/
+
+.cf-flex-box__row {
+  flex-direction: row;
+}
+.cf-flex-box__row-reverse {
+  flex-direction: row-reverse;
+}
+.cf-flex-box__column {
+  flex-direction: column;
+}
+.cf-flex-box__column-reverse {
+  flex-direction: column-reverse;
+}
+
+/*
+  Align Items
+  ------------------------------------------------------------------------------
+*/
+
+.cf-flex-box__align-flex-start {
+  align-items: flex-start;
+}
+.cf-flex-box__align-flex-end {
+  align-items: flex-end;
+}
+.cf-flex-box__align-center {
+  align-items: center;
+}
+.cf-flex-box__align-stretch {
+  align-items: stretch;
+}
+
+/*
+  Justify Content
+  ------------------------------------------------------------------------------
+*/
+
+.cf-flex-box__justify-flex-start {
+  justify-content: flex-start;
+}
+.cf-flex-box__justify-flex-end {
+  justify-content: flex-end;
+}
+.cf-flex-box__justify-center {
+  justify-content: center;
+}
+.cf-flex-box__justify-space-between {
+  justify-content: space-between;
+}
+.cf-flex-box__justify-space-around {
+  justify-content: space-around;
+}
+
+/*
+  Margins
+  ------------------------------------------------------------------------------
+*/
+
+@mixin flexBoxMargins($margin) {
+  // ROW
+  &.cf-flex-box__row {
+    &.cf-flex-box__justify-flex-start {
+      > * {
+        margin-right: $margin;
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+    &.cf-flex-box__justify-flex-end {
+      > * {
+        margin-left: $margin;
+
+        &:first-child {
+          margin-left: 0;
+        }
+      }
+    }
+    &.cf-flex-box__justify-center,
+    &.cf-flex-box__justify-space-between,
+    &.cf-flex-box__justify-space-around {
+      > * {
+        margin-left: $margin * 0.5;
+        margin-right: $margin * 0.5;
+
+        &:first-child {
+          margin-left: 0;
+        }
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+  // ROW REVERSE
+  &.cf-flex-box__row-reverse {
+    &.cf-flex-box__justify-flex-start {
+      > * {
+        margin-left: $margin;
+
+        &:last-child {
+          margin-left: 0;
+        }
+      }
+    }
+    &.cf-flex-box__justify-flex-end {
+      > * {
+        margin-right: $margin;
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+    &.cf-flex-box__justify-center,
+    &.cf-flex-box__justify-space-between,
+    &.cf-flex-box__justify-space-around {
+      > * {
+        margin-right: $margin * 0.5;
+        margin-left: $margin * 0.5;
+
+        &:first-child {
+          margin-right: 0;
+        }
+
+        &:last-child {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+  // COLUMN
+  &.cf-flex-box__column {
+    &.cf-flex-box__justify-flex-start {
+      > * {
+        margin-bottom: $margin;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+    &.cf-flex-box__justify-flex-end {
+      > * {
+        margin-top: $margin;
+
+        &:first-child {
+          margin-top: 0;
+        }
+      }
+    }
+    &.cf-flex-box__justify-center,
+    &.cf-flex-box__justify-space-between,
+    &.cf-flex-box__justify-space-around {
+      > * {
+        margin-top: $margin * 0.5;
+        margin-bottom: $margin * 0.5;
+
+        &:first-child {
+          margin-top: 0;
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+  // COLUMN REVERSE
+  &.cf-flex-box__column-reverse {
+    &.cf-flex-box__justify-flex-start {
+      > * {
+        margin-top: $margin;
+
+        &:last-child {
+          margin-top: 0;
+        }
+      }
+    }
+    &.cf-flex-box__justify-flex-end {
+      > * {
+        margin-bottom: $margin;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+    &.cf-flex-box__justify-center,
+    &.cf-flex-box__justify-space-between,
+    &.cf-flex-box__justify-space-around {
+      > * {
+        margin-bottom: $margin * 0.5;
+        margin-top: $margin * 0.5;
+
+        &:first-child {
+          margin-bottom: 0;
+        }
+
+        &:last-child {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+}
+
+.cf-flex-box__margin-xs {
+  @include flexBoxMargins($cf-border);
+}
+.cf-flex-box__margin-sm {
+  @include flexBoxMargins($cf-space-3xs);
+}
+.cf-flex-box__margin-md {
+  @include flexBoxMargins($cf-space-2xs);
+}
+.cf-flex-box__margin-lg {
+  @include flexBoxMargins($cf-space-s);
+}

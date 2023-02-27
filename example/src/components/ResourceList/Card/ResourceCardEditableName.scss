@@ -1,0 +1,79 @@
+@import '../../../Styles/variables.scss';
+
+/*
+  Editable Name for Resource Cards
+  ------------------------------------------------------------------------------
+*/
+
+.cf-resource-name--text,
+.cf-resource-name--text__link,
+.cf-input.cf-resource-editable-name--input > input {
+  font-size: $cf-card--name-font-size;
+}
+
+.cf-resource-editable-name > a {
+  color: $g17-whisper;
+  display: inline-block;
+}
+
+.cf-resource-editable-name {
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  max-width: calc(100% - 130px);
+}
+
+/* Ensure placeholder text matches font weight of title */
+.cf-input.cf-resource-editable-name--input > input {
+  &::-webkit-input-placeholder {
+    font-weight: $cf-card--name-font-weight !important;
+  }
+  &::-moz-placeholder {
+    font-weight: $cf-card--name-font-weight !important;
+  }
+  &:-ms-input-placeholder {
+    font-weight: $cf-card--name-font-weight !important;
+  }
+  &:-moz-placeholder {
+    font-weight: $cf-card--name-font-weight !important;
+  }
+}
+
+.cf-resource-editable-name--toggle {
+  font-size: $cf-text-base-0;
+  padding: $cf-marg-a;
+  display: inline-block;
+  margin-left: $cf-marg-b;
+  transition: color $cf-transition-default, opacity $cf-transition-default,
+    width $cf-transition-default;
+  opacity: 0;
+  width: 0;
+  color: $g11-sidewalk;
+
+  &:hover {
+    cursor: pointer;
+    color: $g15-platinum;
+  }
+}
+
+.cf-resource-editable-name:hover,
+.cf-resource-editable-name--editing {
+  .cf-resource-editable-name--toggle {
+    opacity: 1;
+    width: $cf-marg-b + $cf-marg-c;
+  }
+}
+
+/*
+  Edit Mode
+  ------------------------------------------------------------------------------
+*/
+
+.cf-resource-editable-name__editing {
+  .cf-resource-name--text,
+  .cf-resource-name--text__link,
+  .cf-resource-editable-name--toggle {
+    display: none;
+  }
+}

@@ -1,0 +1,659 @@
+/*
+   Influx Color Palette
+   -----------------------------------------------------------------------------
+*/
+
+// Greys
+$cf-grey-5: #07070e;
+$cf-grey-15: #1a1a2a;
+$cf-grey-25: #333346;
+$cf-grey-35: #4d4d60;
+$cf-grey-45: #68687b;
+$cf-grey-55: #828294;
+$cf-grey-65: #9e9ead;
+$cf-grey-75: #b9b9c5;
+$cf-grey-85: #d5d5dd;
+$cf-grey-95: #f1f1f3;
+$cf-white: #ffffff;
+
+// Neutrals
+$g0-obsidian: $cf-grey-5;
+$g1-raven: $cf-grey-5;
+$g2-kevlar: $cf-grey-5;
+$g3-castle: $cf-grey-15;
+$g4-onyx: $cf-grey-15;
+$g5-pepper: $cf-grey-25;
+$g6-smoke: $cf-grey-25;
+$g7-graphite: $cf-grey-35;
+$g8-storm: $cf-grey-45;
+$g9-mountain: $cf-grey-45;
+$g10-wolf: $cf-grey-55;
+$g11-sidewalk: $cf-grey-65;
+$g12-forge: $cf-grey-65;
+$g13-mist: $cf-grey-75;
+$g14-chromium: $cf-grey-75;
+$g15-platinum: $cf-grey-85;
+$g16-pearl: $cf-grey-85;
+$g17-whisper: $cf-grey-95;
+$g18-cloud: $cf-grey-95;
+$g19-ghost: $cf-grey-95;
+$g20-white: $cf-white;
+
+// Reds
+$c-basalt: #2f1f29;
+$c-ruby: #bf3d5e;
+$c-fire: #dc4e58;
+$c-curacao: #f95f53;
+$c-dreamsicle: #ff8564;
+$c-tungsten: #ffb6a0;
+$c-marmelade: #ffdccf;
+$c-flan: #fff7f4;
+
+// Blues
+$c-abyss: #120653;
+$c-sapphire: #0b3a8d;
+$c-ocean: #066fc5;
+$c-pool: #00a3ff;
+$c-laser: #00c9ff;
+$c-hydrogen: #6bdfff;
+$c-neutrino: #bef0ff;
+$c-yeti: #f0fcff;
+
+// Purples
+$c-shadow: #2b007e;
+$c-void: #5c10a0;
+$c-amethyst: #8e1fc3;
+$c-star: #be2ee4;
+$c-comet: #ce58eb;
+$c-potassium: #dd84f1;
+$c-moonstone: #ebadf8;
+$c-twilight: #fad9ff;
+
+// Greens
+$c-gypsy: #003e34;
+$c-emerald: #006f49;
+$c-viridian: #009f5f;
+$c-rainforest: #2fa74d;
+$c-honeydew: #67d74e;
+$c-krypton: #9bf445;
+$c-wasabi: #c6f98e;
+$c-mint: #f3ffd6;
+
+// Yellows
+$c-oak: #3f241f;
+$c-topaz: #e85b1c;
+$c-tiger: #f48d38;
+$c-pineapple: #ffb94a;
+$c-thunder: #ffd255;
+$c-sulfur: #ffe480;
+$c-daisy: #fff6b8;
+$c-banana: #fffdde;
+
+// Marketing Brand Colors
+$c-chartreuse: #d6f622;
+$c-magenta: #bf2fe5;
+$c-deeppurple: #13002d;
+$c-galaxy: #9394ff;
+$c-pulsar: #513cc6;
+
+/*
+  State change variables
+*/
+
+$cf-hover-active-opacity: 0.08;
+$cf-disabled-opacity: 0.5;
+
+/*
+   Z Variables
+   -----------------------------------------------------------------------------
+   Might not actually need any of these yet
+*/
+
+$cf-z--nav-toggle: 9999;
+$cf-z--draggable-resizer-mask: 9950;
+$cf-z--notifications: 9900;
+$cf-z--portal: 9200;
+$cf-z--nav-menu: 9100;
+$cf-z--nav-mask: 9000;
+$cf-z--tabs-dropdown: 8000;
+
+/*
+   Motifs
+   -----------------------------------------------------------------------------
+   Goal is to re-use these variables as much as possible to ensure powerful
+   control over the UI kit proportions
+*/
+
+$cf-space-3xs: 4px;
+$cf-space-2xs: 8px;
+$cf-space-xs: 12px;
+$cf-space-s: 16px;
+$cf-space-m: 24px;
+$cf-space-l: 32px;
+$cf-space-xl: 48px;
+$cf-space-2xl: 64px;
+$cf-space-3xl: 96px;
+
+$cf-marg-a: $cf-space-3xs;
+$cf-marg-b: $cf-space-2xs;
+$cf-marg-c: $cf-space-s;
+$cf-marg-d: $cf-space-l;
+$cf-marg-e: $cf-space-2xl;
+
+$cf-border: 2px;
+$cf-radius: 2px;
+$cf-radius-sm: $cf-radius - 1px;
+
+/*
+   Typography Variables
+   -----------------------------------------------------------------------------
+*/
+
+$cf-header-font: 'Proxima Nova', Helvetica, Arial, Tahoma, Verdana, sans-serif;
+$cf-text-font: 'Proxima Nova', Helvetica, Arial, Tahoma, Verdana, sans-serif;
+$cf-code-font: 'Roboto Mono', monospace;
+$cf-icon-font: 'icomoon';
+
+$cf-font-weight--light: 300;
+$cf-font-weight--regular: 400;
+$cf-font-weight--medium: 600;
+$cf-font-weight--bold: 700;
+$cf-font-weight--black: 900;
+
+$cf-text-tiny: #{var(--step--1)};
+$cf-body-text: #{var(--step-0)};
+$cf-text-base: #{var(--step-0)};
+$cf-text-base--1: $cf-text-tiny;
+$cf-text-base-0: $cf-text-base;
+$cf-text-base-1: #{var(--step-1)};
+$cf-text-base-2: #{var(--step-2)};
+$cf-text-base-3: #{var(--step-3)};
+$cf-text-base-4: #{var(--step-4)};
+$cf-text-base-5: #{var(--step-5)};
+$cf-text-base-6: #{var(--step-6)};
+
+$cf-text-default: $cf-grey-95;
+$cf-text-header: $cf-grey-95;
+$cf-text-line-height: 1.2;
+
+$cf-link-weight: $cf-font-weight--medium;
+$cf-link-default: $c-pool;
+$cf-link-default-hover: $c-laser;
+$cf-link-success: $c-rainforest;
+$cf-link-success-hover: $c-honeydew;
+$cf-link-warning: $c-pineapple;
+$cf-link-warning-hover: $c-thunder;
+$cf-link-secondary: $c-comet;
+$cf-link-secondary-hover: $c-potassium;
+$cf-link-danger: $c-curacao;
+$cf-link-danger-hover: $c-dreamsicle;
+
+$cf-text-selection-bg: $c-pool;
+$cf-text-selection-color: $g20-white;
+
+/*
+   Page Layout Variables
+   -----------------------------------------------------------------------------
+   NavMenu + Page components
+*/
+
+$cf-nav-menu--size: 60px;
+$cf-nav-menu--gutter: 16px;
+$cf-nav-menu--bg: $c-pool;
+$cf-nav-menu--bg-accent: $c-star;
+$cf-nav-menu--bg-hover: $c-laser;
+$cf-nav-menu--bg-hover-accent: $c-comet;
+$cf-nav-menu--breakpoint: 800px;
+
+$cf-page--background: $g1-raven;
+
+$cf-page--header-size-sm: auto;
+$cf-page--header-size: 88px;
+$cf-page--control-bar-size: 52px;
+$cf-page--title-size-sm: 1.8em;
+$cf-page--title-size: 2.4em;
+$cf-page--title-weight: 500;
+$cf-page--title-font: $cf-header-font;
+$cf-page--title-color: $cf-text-header;
+
+$cf-page--gutter-xs: 12px;
+$cf-page--gutter-sm: 20px;
+$cf-page--gutter-md: 32px;
+$cf-page--gutter-lg: 54px;
+
+$cf-page--max-width: 1608px;
+$cf-page--funnel-max-width: 1200px;
+
+/*
+   Responsive Breakpoints
+   -----------------------------------------------------------------------------
+*/
+
+$cf-grid--breakpoint-sm: 750px;
+$cf-grid--breakpoint-md: 1080px;
+$cf-grid--breakpoint-lg: 1500px;
+
+/*
+   Form Element Sizing
+   -----------------------------------------------------------------------------
+   These ensure consistent sizing across elements such as Buttons, SelectGroup,
+   Dropdown, Input, etc.
+*/
+
+$cf-form-xs-height: 33px;
+$cf-form-xs-padding: $cf-space-xs;
+$cf-form-xs-font: #{var(--step-0)};
+
+$cf-form-sm-height: 40px;
+$cf-form-sm-width: 33px;
+$cf-form-sm-padding: $cf-space-xs;
+$cf-form-sm-font: #{var(--step-0)};
+
+$cf-form-md-height: 44px;
+$cf-form-md-padding: $cf-space-s;
+$cf-form-md-font: #{var(--step-1)};
+
+$cf-form-lg-height: 52px;
+$cf-form-lg-padding: $cf-space-m;
+$cf-form-lg-font: #{var(--step-1)};
+
+/*
+   Button colours
+   -----------------------------------------------------------------------------
+*/
+
+$cf-button-default-bg: $cf-grey-25;
+
+/*
+   Empty State
+   -----------------------------------------------------------------------------
+*/
+
+$cf-empty-state-text: $cf-grey-55;
+$cf-empty-state-highlight: $cf-grey-95;
+
+/*
+   Animations
+   -----------------------------------------------------------------------------
+*/
+
+$cf-ease-snappy: cubic-bezier(0.18, 0.16, 0.2, 1);
+$cf-ease-smooth: cubic-bezier(0.5, 0, 0.5, 1);
+$cf-time-quick: 200ms;
+$cf-time-slow: 400ms;
+$cf-transition-default: $cf-time-quick $cf-ease-snappy;
+
+/*
+   Input Variables
+   -----------------------------------------------------------------------------
+   These ensure consistent appearance across different kinds of inputs
+*/
+
+$cf-input--transition: background-color $cf-transition-default,
+  border-color $cf-transition-default, color $cf-transition-default,
+  box-shadow $cf-transition-default, color $cf-transition-default;
+
+$cf-input-background--default: $cf-grey-5;
+$cf-input-background--focused: rgba($cf-grey-95, 0.15);
+$cf-input-background--hover: rgba($cf-grey-95, 0.15);
+$cf-input-background--disabled: $g3-castle;
+
+$cf-input-text--default: $cf-white;
+$cf-input-text--focused: $cf-white;
+$cf-input-text--hover: $cf-white;
+$cf-input-text--disabled: $cf-empty-state-text;
+
+$cf-input-border--default: $g5-pepper;
+$cf-input-border--focused: rgba($c-pool, 0.75);
+$cf-input-border--hover: $g5-pepper;
+$cf-input-border--disabled: $g4-onyx;
+
+$cf-input-border--error: $c-fire;
+$cf-input-border--error-hover: $c-fire;
+$cf-input-border--error-focused: $c-fire;
+
+$cf-input--field-z: 1;
+$cf-input--shadow-z: $cf-input--field-z + 1;
+$cf-input--status-z: $cf-input--shadow-z + 1;
+
+$cf-input--placeholder-text: $g9-mountain;
+
+$cf-input--box-shadow: none;
+
+/*
+   Card Variables
+   -----------------------------------------------------------------------------
+   These ensure consistent appearance across different kinds of cards
+*/
+
+$cf-card-background--default: $g3-castle;
+$cf-card-background--hover: $g4-onyx;
+$cf-card-background--disabled: rgba($g3-castle, 50%);
+
+$cf-card-text--default: $g13-mist;
+$cf-card-text--hover: $g18-cloud;
+$cf-card-text--disabled: $g9-mountain;
+
+$cf-card--border: $g5-pepper;
+$cf-card--border-hover: $g6-smoke;
+$cf-card--border-disabled: $g6-smoke;
+
+$cf-card--name-font-size: $cf-text-base-2;
+$cf-card--name-font-weight: $cf-font-weight--medium;
+
+/*
+   Label Variables
+   -----------------------------------------------------------------------------
+   Used in both Inputs and Forms
+*/
+
+$cf-label--default: $cf-white;
+$cf-label--hover: $cf-grey-95;
+$cf-label--active: $cf-white;
+
+/*
+   Overlay Variables
+   -----------------------------------------------------------------------------
+   Used in both Inputs and Forms
+*/
+
+$cf-overlay--gutter: $cf-space-m;
+$cf-overlay--header-height: $cf-page--header-size;
+$cf-overlay--title-font: $cf-page--title-font;
+$cf-overlay--title-size: $cf-text-base-3;
+$cf-overlay--title-weight: $cf-page--title-weight;
+$cf-overlay--title-color: $cf-page--title-color;
+$cf-overlay--container-padding: $cf-marg-c + $cf-marg-d;
+$cf-overlay--z: 20;
+$cf-overlay--mask-z: 10;
+
+/*
+   Tree Nav Variables
+   -----------------------------------------------------------------------------
+*/
+
+$cf-tree-nav__width: 60px;
+$cf-tree-nav__expanded-width: 260px;
+$cf-tree-nav__small-height: 44px;
+
+$cf-tree-nav__gradient-a: $c-star;
+$cf-tree-nav__gradient-b: $c-pool;
+
+$cf-tree-nav__border: $g5-pepper;
+$cf-tree-nav__border-hover: $g8-storm;
+$cf-tree-nav__border-active: $c-pool;
+$cf-tree-nav__bg: $cf-grey-15;
+$cf-tree-nav__bg-hover: $cf-grey-25;
+$cf-tree-nav__bg-active: rgba($cf-white, 0.07);
+$cf-tree-nav__text: $cf-white;
+$cf-tree-nav__text-hover: $cf-white;
+$cf-tree-nav__text-active: $cf-white;
+
+$cf-tree-nav__sub-item-text: $g13-mist;
+$cf-tree-nav__sub-item-text-hover: $g20-white;
+$cf-tree-nav__sub-item-text-active: $g20-white;
+$cf-tree-nav__sub-item-bg: transparent;
+$cf-tree-nav__sub-item-bg-hover: $g7-graphite;
+$cf-tree-nav__sub-item-bg-active: $c-pool;
+
+$cf-tree-nav__user-bg: $cf-tree-nav__bg;
+$cf-tree-nav__user-bg-hover: $cf-tree-nav__bg;
+$cf-tree-nav__user-bg-active: $cf-tree-nav__bg-hover;
+$cf-tree-nav__user-text: $g15-platinum;
+$cf-tree-nav__user-text-hover: $g20-white;
+$cf-tree-nav__user-text-active: $g20-white;
+$cf-tree-nav__user-icon: $g20-white;
+$cf-tree-nav__user-color-b: $c-pool;
+$cf-tree-nav__user-color-a: $c-magenta;
+$cf-tree-nav__user-menu-bg: $g3-castle;
+$cf-tree-nav__user-menu-item-hover: $g5-pepper;
+
+$cf-tree-nav__toggle-icon: $cf-white;
+
+/*
+   Mixins
+   -----------------------------------------------------------------------------
+*/
+
+@mixin createOverlayBase() {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  content: '';
+  border-radius: $cf-radius;
+  transition: opacity $cf-transition-default;
+  opacity: 0;
+  background-color: #ffffff;
+  pointer-events: none;
+}
+
+@mixin gradient-v($startColor, $endColor) {
+  background: $startColor;
+  background: -moz-linear-gradient(top, $startColor 0%, $endColor 100%);
+  background: -webkit-linear-gradient(top, $startColor 0%, $endColor 100%);
+  background: linear-gradient(to bottom, $startColor 0%, $endColor 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$startColor', endColorstr='$endColor',GradientType=0 );
+}
+@mixin gradient-h($startColor, $endColor) {
+  background: $startColor;
+  background: -moz-linear-gradient(left, $startColor 0%, $endColor 100%);
+  background: -webkit-linear-gradient(left, $startColor 0%, $endColor 100%);
+  background: linear-gradient(to right, $startColor 0%, $endColor 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$startColor', endColorstr='$endColor',GradientType=1 );
+}
+@mixin gradient-diag-up($startColor, $endColor) {
+  background: $startColor;
+  background: -moz-linear-gradient(45deg, $startColor 0%, $endColor 100%);
+  background: -webkit-linear-gradient(45deg, $startColor 0%, $endColor 100%);
+  background: linear-gradient(45deg, $startColor 0%, $endColor 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$startColor', endColorstr='$endColor',GradientType=1 );
+}
+@mixin gradient-diag-down($startColor, $endColor) {
+  background: $startColor;
+  background: -moz-linear-gradient(
+    135deg,
+    $startColor 0%,
+    $endColor 100%
+  ) !important;
+  background: -webkit-linear-gradient(
+    135deg,
+    $startColor 0%,
+    $endColor 100%
+  ) !important;
+  background: linear-gradient(
+    135deg,
+    $startColor 0%,
+    $endColor 100%
+  ) !important;
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$startColor', endColorstr='$endColor',GradientType=1 ) !important;
+}
+@mixin gradient-r($startColor, $endColor) {
+  background: $startColor;
+  background: -moz-radial-gradient(
+    center,
+    ellipse cover,
+    $startColor 0%,
+    $endColor 100%
+  );
+  background: -webkit-radial-gradient(
+    center,
+    ellipse cover,
+    $startColor 0%,
+    $endColor 100%
+  );
+  background: radial-gradient(
+    ellipse at center,
+    $startColor 0%,
+    $endColor 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$startColor', endColorstr='$endColor',GradientType=1 );
+}
+
+// Custom Scrollbars (Chrome Only)
+$cf-scrollbar-width: 4px;
+$cf-scrollbar-offset: 3px;
+@mixin custom-scrollbar($trackColor, $handleColor) {
+  &::-webkit-scrollbar {
+    width: $cf-scrollbar-width;
+
+    &-button {
+      background-color: $trackColor;
+    }
+    &-track {
+      background-color: $trackColor;
+    }
+    &-track-piece {
+      background-color: $trackColor;
+      border: $cf-scrollbar-offset solid $trackColor;
+      border-radius: ($cf-scrollbar-width * 0.5);
+    }
+    &-thumb {
+      background-color: $handleColor;
+      border: $cf-scrollbar-offset solid $trackColor;
+      border-radius: ($cf-scrollbar-width * 0.5);
+    }
+    &-corner {
+      background-color: $trackColor;
+    }
+  }
+  &::-webkit-resizer {
+    background-color: $trackColor;
+  }
+}
+
+@mixin custom-scrollbar-round($trackColor, $handleColor) {
+  &::-webkit-scrollbar {
+    width: $cf-scrollbar-width;
+    border-top-right-radius: $cf-radius;
+    border-top-left-radius: $cf-radius;
+    border-bottom-left-radius: $cf-radius;
+    border-bottom-right-radius: $cf-radius;
+
+    &-button {
+      background-color: $trackColor;
+    }
+    &-track {
+      background-color: $trackColor;
+      border-top-right-radius: ($cf-scrollbar-width * 0.5);
+      border-top-left-radius: ($cf-scrollbar-width * 0.5);
+      border-bottom-left-radius: ($cf-scrollbar-width * 0.5);
+      border-bottom-right-radius: ($cf-scrollbar-width * 0.5);
+    }
+    &-track-piece {
+      background-color: $trackColor;
+    }
+    &-thumb {
+      background-color: $handleColor;
+      border-radius: ($cf-scrollbar-width * 0.5);
+    }
+    &-corner {
+      background-color: $trackColor;
+    }
+  }
+  &::-webkit-resizer {
+    background-color: $trackColor;
+  }
+}
+
+// Block user select
+@mixin no-user-select() {
+  user-select: none !important;
+  -moz-user-select: none !important;
+  -webkit-user-select: none !important;
+  -ms-user-select: none !important;
+  -o-user-select: none !important;
+  &,
+  &:hover {
+    cursor: default;
+  }
+}
+%no-user-select {
+  user-select: none !important;
+  -moz-user-select: none !important;
+  -webkit-user-select: none !important;
+  -ms-user-select: none !important;
+  -o-user-select: none !important;
+  &,
+  &:hover {
+    cursor: default;
+  }
+}
+
+@mixin checkbox-indicator() {
+  background-color: rgba($cf-grey-95, 0.1);
+  border-radius: $cf-radius;
+}
+
+@mixin checkbox-indicator-active() {
+  background-color: $cf-grey-25;
+}
+
+// Shadows
+%drop-shadow {
+  box-shadow: 0 0 10px 2px $g2-kevlar;
+}
+%panel-shadow {
+  box-shadow: 0 1px 4px 1px rgba($g0-obsidian, 0.2);
+}
+%deep-shadow {
+  box-shadow: 0 28px 84px rgba($cf-grey-5, 0.3);
+}
+@mixin panel-shadow {
+  box-shadow: 0 1px 4px 1px rgba($g0-obsidian, 0.2);
+}
+@mixin focus-shadow($color: $c-pool) {
+  box-shadow: inset 0 0 0 $cf-border rgba($color, 0.75),
+    0px 0px ($cf-border * 2) $color;
+}
+@mixin focus-glow($color: $c-pool) {
+  box-shadow: 0px 0px ($cf-border * 2) $color;
+}
+
+@mixin funnel-page-background() {
+  z-index: $funnel-page--graphic-z;
+  // This image reference breaks the storybook build and is also
+  // not working properly in production
+  // background-image: url('./Images/FunnelPageGraphic.svg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+// Blur
+%backdrop-blur {
+  -webkit-backdrop-filter: blur(28px);
+  backdrop-filter: blur(28px);
+}
+
+%backdrop-bg {
+  background-color: rgba($cf-grey-15, 0.9);
+
+  @supports (
+    (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
+  ) {
+    background-color: rgba($cf-grey-95, 0.1);
+  }
+}
+
+%backdrop-blue {
+  background-color: rgba($cf-grey-15, 0.9);
+
+  @supports (
+    (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
+  ) {
+    background: linear-gradient(0deg, rgba($c-pool, 0.05), rgba($c-pool, 0.05)),
+      #{rgba($cf-grey-95, 0.05)};
+  }
+}
+
+%backdrop-blur-dark {
+  @extend %backdrop-blur;
+  @extend %backdrop-bg;
+}
+
+%backdrop-blur-blue {
+  @extend %backdrop-blur;
+  @extend %backdrop-blue;
+}

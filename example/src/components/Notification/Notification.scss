@@ -1,0 +1,161 @@
+@import '../../Styles/variables';
+
+/*
+    Notification
+    ----------------------------------------------------------------------------
+*/
+
+$cf-notification-screen-margin: $cf-space-s;
+
+.cf-notification {
+  margin-bottom: $cf-space-3xs;
+  color: $g18-cloud;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: $cf-radius;
+  font-weight: $cf-font-weight--medium;
+
+  .cf-notification--contents {
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    .cf-notification--children {
+      min-height: 30px;
+      display: inline-flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+  }
+
+  .cf-notification--icon {
+    font-size: 1.125em;
+    margin-right: $cf-space-s;
+    display: inline-flex;
+    flex-shrink: 0;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .cf-notification--dismiss {
+    flex-shrink: 0;
+    margin-left: $cf-space-xs;
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    color: $g18-cloud;
+    opacity: 0.6;
+    transition: opacity $cf-transition-default, transform $cf-transition-default;
+
+    &:active,
+    &:focus,
+    &:active:hover,
+    &.active,
+    &.active:hover {
+      background-color: transparent;
+      border: none;
+      box-shadow: none;
+    }
+
+    &:focus,
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.cf-notification--dismiss:after {
+  content: none;
+}
+
+.cf-notification-container {
+  position: fixed;
+  display: inline-flex;
+  flex-direction: column;
+  z-index: $cf-z--notifications;
+
+  &.cf-notification__top {
+    top: $cf-notification-screen-margin;
+    justify-content: flex-start;
+  }
+
+  &.cf-notification__middle {
+    top: 50%;
+    transform: translateY(-50%);
+    justify-content: center;
+  }
+
+  &.cf-notification__bottom {
+    bottom: $cf-notification-screen-margin;
+    justify-content: flex-end;
+    flex-direction: column-reverse;
+  }
+
+  &.cf-notification__left {
+    left: $cf-notification-screen-margin;
+    align-items: flex-start;
+  }
+
+  &.cf-notification__center {
+    left: 50%;
+    transform: translateX(-50%);
+    align-items: center;
+  }
+
+  &.cf-notification__right {
+    right: $cf-notification-screen-margin;
+    align-items: flex-end;
+  }
+
+  &.cf-notification__middle.cf-notification__center {
+    transform: translate(-50%, -50%);
+  }
+}
+
+/*
+  Size Modifiers
+  ------------------------------------------------------------------------------
+*/
+@mixin notificationSizeModifier($paddingV, $paddingH, $fontSize) {
+  padding: $paddingV $paddingH;
+  font-size: $fontSize;
+}
+
+.cf-notification__xs {
+  @include notificationSizeModifier(
+    $cf-space-2xs,
+    $cf-space-s,
+    $cf-text-base--1
+  );
+}
+.cf-notification__sm {
+  @include notificationSizeModifier($cf-space-xs, $cf-space-s, $cf-text-base-0);
+}
+.cf-notification__md {
+  @include notificationSizeModifier($cf-space-xs, $cf-space-s, $cf-text-base-1);
+}
+.cf-notification__lg {
+  @include notificationSizeModifier($cf-space-s, $cf-space-s, $cf-text-base-1);
+}
+
+/*
+  Contrast Text Modifiers
+  ------------------------------------------------------------------------------
+*/
+
+.cf-notification__dark-text {
+  color: rgba($g2-kevlar, 0.85);
+
+  .cf-notification--dismiss {
+    color: rgba($g2-kevlar, 0.85);
+  }
+}
+
+.cf-notification__light-text {
+  color: rgba($g20-white, 0.85);
+
+  .cf-notification--dismiss {
+    color: rgba($g20-white, 0.85);
+  }
+}

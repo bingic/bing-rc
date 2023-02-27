@@ -1,0 +1,140 @@
+@import '../../Styles/variables.scss';
+
+/*
+  Slide Toggle Component
+  ------------------------------------------------------------------------------
+*/
+
+$slide-toggle--gap: 3px;
+
+.cf-slide-toggle {
+  position: relative;
+  display: inline-block;
+  transition: background-color $cf-transition-default,
+    border-color $cf-transition-default;
+  background-color: $cf-grey-25;
+  overflow: hidden;
+  outline: none;
+
+  &:after {
+    @include createOverlayBase();
+  }
+
+  &:focus:not(.disabled),
+  &:hover:not(.disabled) {
+    cursor: pointer;
+
+    &:after {
+      opacity: $cf-hover-active-opacity;
+    }
+  }
+
+  &:focus:not(.disabled):not(.active) {
+    @include focus-shadow();
+  }
+
+  &:focus:not(.disabled) {
+    @include focus-shadow($cf-white);
+  }
+}
+
+.cf-slide-toggle--knob {
+  position: absolute;
+  top: 50%;
+  transition: background-color $cf-transition-default,
+    transform $cf-transition-default;
+  transform: translate(0, -50%);
+  border-radius: 50%;
+  box-shadow: 0 0 $slide-toggle--gap ($slide-toggle--gap * 0.5)
+    rgba($cf-grey-5, 0.25);
+  background-color: $cf-grey-75;
+  left: 10%;
+
+  .cf-slide-toggle:not(.disabled):hover & {
+    background-color: $cf-white;
+  }
+}
+
+/*
+  Active State
+  ------------------------------------------------------------------------------
+*/
+.cf-slide-toggle.active .cf-slide-toggle--knob {
+  transform: translate(100%, -50%);
+  background-color: $cf-white;
+}
+
+/*
+  Disabled State
+  ------------------------------------------------------------------------------
+*/
+.cf-slide-toggle.disabled,
+.cf-slide-toggle.disabled:hover {
+  cursor: not-allowed;
+  opacity: $cf-disabled-opacity;
+}
+
+/*
+  Size Modifiers
+  ------------------------------------------------------------------------------
+*/
+@mixin slideToggleSizeModifier($size) {
+  height: $size;
+  border-radius: $size * 0.5;
+  padding: 0 $slide-toggle--gap;
+  width: ($size * 1.5);
+  flex: 0 0 ($size * 1.5);
+
+  .cf-slide-toggle--knob,
+  .cf-slide-toggle--knob:before,
+  .cf-slide-toggle--knob:after {
+    width: $size * 0.6;
+    height: $size * 0.6;
+  }
+}
+
+.cf-slide-toggle {
+  &.cf-slide-toggle-xs {
+    @include slideToggleSizeModifier(20px);
+  }
+  &.cf-slide-toggle-sm {
+    @include slideToggleSizeModifier(20px);
+  }
+  &.cf-slide-toggle-md {
+    @include slideToggleSizeModifier(24px);
+  }
+  &.cf-slide-toggle-lg {
+    @include slideToggleSizeModifier(32px);
+  }
+}
+
+/*
+  Color Modifiers
+  ------------------------------------------------------------------------------
+*/
+@mixin slideToggleColorModifier($activeBackground) {
+  background-color: $cf-grey-25;
+
+  &.active {
+    background-color: $activeBackground;
+  }
+}
+
+.cf-slide-toggle {
+  &.cf-slide-toggle-default,
+  &.cf-slide-toggle-primary {
+    @include slideToggleColorModifier($c-pool);
+  }
+  &.cf-slide-toggle-secondary {
+    @include slideToggleColorModifier($c-star);
+  }
+  &.cf-slide-toggle-success {
+    @include slideToggleColorModifier($c-rainforest);
+  }
+  &.cf-slide-toggle-danger {
+    @include slideToggleColorModifier($c-curacao);
+  }
+  &.cf-slide-toggle-warning {
+    @include slideToggleColorModifier($c-pineapple);
+  }
+}

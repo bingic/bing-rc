@@ -1,0 +1,74 @@
+@import '../../../Styles/variables.scss';
+
+/*
+  Resource Editable Description
+  ------------------------------------------------------------------------------
+*/
+
+.cf-resource-description--preview,
+.cf-input.cf-resource-description--input > input {
+  font-size: $cf-text-base-0;
+}
+
+.cf-resource-description--preview,
+.cf-resource-description--input {
+  position: relative;
+  width: 100%;
+}
+
+.cf-resource-description--preview {
+  width: auto;
+  display: inline-block;
+  border-radius: $cf-radius;
+  position: relative;
+  overflow: hidden;
+  @include no-user-select();
+  color: $cf-grey-55;
+  transition: color $cf-transition-default,
+    background-color $cf-transition-default, border-color $cf-transition-default;
+
+  .cf-icon {
+    position: relative;
+    top: -2px;
+    display: inline-block;
+    margin-left: $cf-marg-b;
+    opacity: 0;
+    transition: opacity $cf-transition-default;
+    color: inherit;
+  }
+
+  &:hover .cf-icon {
+    opacity: 1;
+  }
+
+  &.untitled {
+    color: $cf-grey-55;
+    font-style: italic;
+  }
+
+  .cf-resource-description__editable &:hover {
+    cursor: text;
+    color: $g20-white;
+  }
+}
+
+/* Ensure placeholder text matches font weight of title */
+.cf-input.cf-resource-description--input > input {
+  &::-webkit-input-placeholder {
+    font-weight: $cf-font-weight--medium !important;
+  }
+  &::-moz-placeholder {
+    font-weight: $cf-font-weight--medium !important;
+  }
+  &:-ms-input-placeholder {
+    font-weight: $cf-font-weight--medium !important;
+  }
+  &:-moz-placeholder {
+    font-weight: $cf-font-weight--medium !important;
+  }
+}
+
+/* Pull description up when it follows a title */
+.cf-flex-box__margin-lg .cf-resource-editable-name + .cf-resource-description {
+  margin-top: -$cf-space-2xs;
+}

@@ -1,0 +1,306 @@
+/*
+   Typography
+   -----------------------------------------------------------------------------
+*/
+
+body {
+  font-family: $cf-text-font;
+  color: $cf-text-default;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Base Link Styles
+// -----------------------------------------------------------------------------
+a:link,
+a:visited {
+  color: $cf-link-default;
+  transition: color $cf-transition-default;
+  text-decoration: none;
+  font-weight: $cf-link-weight;
+
+  &.link-danger {
+    color: $cf-link-danger;
+  }
+  &.link-success {
+    color: $cf-link-success;
+  }
+  &.link-warning {
+    color: $cf-link-warning;
+  }
+  &.link-secondary {
+    color: $cf-link-secondary;
+  }
+}
+a:hover,
+a:active {
+  color: $cf-link-default-hover;
+  text-decoration: none;
+
+  &.link-danger {
+    color: $cf-link-danger-hover;
+  }
+  &.link-success {
+    color: $cf-link-success-hover;
+  }
+  &.link-warning {
+    color: $cf-link-warning-hover;
+  }
+  &.link-secondary {
+    color: $cf-link-secondary-hover;
+  }
+}
+
+// Selection Styles
+// -----------------------------------------------------------------------------
+::selection {
+  background-color: $cf-text-selection-bg;
+  color: $cf-text-selection-color; /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+  background-color: $cf-text-selection-bg;
+  color: $cf-text-selection-color; /* Gecko Browsers */
+}
+
+// Typography Base Styles
+// -----------------------------------------------------------------------------
+
+%type-base-styles {
+  margin: 1em 0;
+}
+%type-small-styles {
+  small {
+    font-size: 0.8em;
+    font-weight: inherit;
+    color: $cf-text-default;
+  }
+}
+%type-uppercase {
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+// Typographic Elements
+// -----------------------------------------------------------------------------
+p {
+  @extend %type-base-styles;
+  font-size: $cf-text-base;
+  line-height: 1.55em;
+  font-weight: $cf-font-weight--regular;
+
+  b,
+  strong {
+    font-weight: $cf-font-weight--medium;
+  }
+
+  small {
+    color: $cf-text-default;
+    font-size: $cf-text-tiny;
+    font-weight: $cf-font-weight--medium;
+  }
+}
+
+h1 {
+  @extend %type-base-styles;
+  @extend %type-small-styles;
+  line-height: 1.25em;
+  font-size: $cf-text-base-6;
+  font-weight: $cf-font-weight--medium;
+  letter-spacing: -0.01em;
+}
+h2 {
+  @extend %type-base-styles;
+  @extend %type-small-styles;
+  line-height: 1.25em;
+  font-size: $cf-text-base-4;
+  font-weight: $cf-font-weight--medium;
+  letter-spacing: -0.01em;
+}
+h3 {
+  @extend %type-base-styles;
+  @extend %type-small-styles;
+  line-height: 1.25em;
+  font-size: $cf-text-base-3;
+  font-weight: $cf-font-weight--medium;
+  small {
+    font-weight: $cf-font-weight--medium;
+  }
+}
+h4 {
+  @extend %type-base-styles;
+  @extend %type-small-styles;
+  line-height: 1.25em;
+  font-size: $cf-text-base-2;
+  font-weight: $cf-font-weight--medium;
+  small {
+    font-weight: $cf-font-weight--medium;
+  }
+}
+h5 {
+  @extend %type-base-styles;
+  @extend %type-small-styles;
+  line-height: 1.25em;
+  font-size: $cf-text-base-1;
+  font-weight: $cf-font-weight--medium;
+  small {
+    font-weight: $cf-font-weight--medium;
+  }
+}
+h6 {
+  @extend %type-base-styles;
+  @extend %type-small-styles;
+  line-height: 1.25em;
+  font-size: $cf-text-base;
+  font-weight: $cf-font-weight--medium;
+  small {
+    font-weight: $cf-font-weight--medium;
+  }
+}
+ol,
+ul {
+  @extend %type-base-styles;
+  padding-left: $cf-marg-c;
+  font-size: $cf-text-base;
+  line-height: 1.55em;
+  font-weight: $cf-font-weight--medium;
+}
+li {
+  margin: 0 0 $cf-marg-b 0;
+  padding-left: $cf-marg-b;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+blockquote {
+  @extend %type-base-styles;
+  font-size: $cf-text-base;
+  line-height: 1.55em;
+  font-weight: $cf-font-weight--regular;
+  border: 0;
+  padding: $cf-marg-b $cf-marg-c;
+  color: $cf-text-default;
+  font-style: italic;
+  position: relative;
+
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    width: $cf-marg-e;
+    height: $cf-marg-d;
+    border-style: solid;
+    border-color: $g5-pepper;
+  }
+  &:before {
+    top: 0;
+    left: 0;
+    border-width: $cf-border 0 0 $cf-border;
+  }
+  &:after {
+    bottom: 0;
+    right: 0;
+    border-width: 0 $cf-border $cf-border 0;
+  }
+
+  b,
+  strong {
+    font-weight: $cf-font-weight--medium;
+  }
+}
+hr {
+  border: 0;
+  height: 2px;
+  margin: $cf-marg-c 0 $cf-marg-d 0;
+  background-color: $g5-pepper;
+  border-radius: 1px;
+  &.dark {
+    background-color: $g3-castle;
+  }
+}
+
+// Type Formatting
+b,
+strong {
+  font-weight: $cf-font-weight--medium;
+}
+mark {
+  background-color: $c-emerald;
+  color: $c-honeydew;
+  padding: $cf-border $cf-marg-a;
+  border-radius: $cf-radius-sm;
+}
+
+// Text Selection Styling
+::selection {
+  background-color: $c-pool;
+  color: $g20-white;
+}
+::-moz-selection {
+  background-color: $c-pool;
+  color: $g20-white;
+}
+br {
+  @extend %no-user-select;
+}
+
+//  Colored Text Utilities
+//  ----------------------------------------------------------------------------
+span.text-color {
+  &-primary {
+    color: $c-pool;
+  }
+  &-success {
+    color: $c-rainforest;
+  }
+  &-warning {
+    color: $c-pineapple;
+  }
+  &-danger {
+    color: $c-curacao;
+  }
+  &-secondary {
+    color: $c-star;
+  }
+}
+
+// Untitled Styles
+// -----------------------------------------------------------------------------
+
+.untitled-name {
+  font-style: italic;
+}
+
+// Type scale utilities
+// -----------------------------------------------------------------------------
+
+.type-step--1 {
+  font-size: $cf-text-tiny;
+}
+
+.type-step-0 {
+  font-size: $cf-text-base;
+}
+
+.type-step-1 {
+  font-size: $cf-text-base-1;
+}
+
+.type-step-2 {
+  font-size: $cf-text-base-2;
+}
+
+.type-step-3 {
+  font-size: $cf-text-base-3;
+}
+
+.type-step-4 {
+  font-size: $cf-text-base-4;
+}
+
+.type-step-5 {
+  font-size: $cf-text-base-5;
+}
+
+.type-step-6 {
+  font-size: $cf-text-base-6;
+}

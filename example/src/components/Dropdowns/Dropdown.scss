@@ -1,0 +1,317 @@
+@import '../../Styles/variables';
+
+$dropdown-item--dot-radius: 6px;
+$dropdown-item--checkbox-size: 16px;
+$dropdown-item--padding-h: $cf-space-2xs;
+$dropdown-item--padding-v: $cf-space-2xs;
+
+/*
+  Dropdown
+  ------------------------------------------------------------------------------
+*/
+.cf-dropdown {
+  font-size: 0;
+  position: relative;
+
+  &.cf-dropdown-xs {
+    height: $cf-form-xs-height;
+  }
+  &.cf-dropdown-sm {
+    height: $cf-form-sm-height;
+  }
+  &.cf-dropdown-md {
+    height: $cf-form-md-height;
+  }
+  &.cf-dropdown-lg {
+    height: $cf-form-lg-height;
+  }
+}
+
+/*
+  Dropdown Menu
+  ------------------------------------------------------------------------------
+*/
+.cf-dropdown--menu-container {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  z-index: 5000;
+}
+
+.cf-dropdown-menu {
+  overflow: hidden;
+  border-radius: $cf-radius;
+  box-shadow: 0 2px 5px 0.6px rgba($g0-obsidian, 0.2);
+  padding: $cf-space-2xs;
+}
+
+.cf-dropdown-menu--contents {
+  font-size: 0;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  cursor: pointer;
+}
+
+/*
+  Dropdown Item
+  ------------------------------------------------------------------------------
+*/
+
+@mixin dropdownItemStyles() {
+  padding: $dropdown-item--padding-v $dropdown-item--padding-h;
+  font-size: $cf-form-sm-font;
+  font-weight: $cf-font-weight--regular;
+  text-align: left;
+}
+
+.cf-dropdown-divider {
+  @include dropdownItemStyles();
+  font-weight: $cf-font-weight--medium;
+
+  &.line {
+    padding: 0;
+    height: $cf-border;
+  }
+
+  &:hover {
+    cursor: default;
+  }
+}
+
+.cf-dropdown-item {
+  @include dropdownItemStyles();
+  color: $g20-white;
+  position: relative;
+  border-radius: $cf-radius;
+
+  &.cf-dropdown-link-item {
+    padding: 0;
+  }
+
+  &.active {
+    font-weight: $cf-font-weight--medium;
+  }
+
+  &.cf-dropdown-item__dot,
+  &.cf-dropdown-item__dot.cf-dropdown-link-item > a,
+  &.cf-dropdown-item__checkbox,
+  &.cf-dropdown-item__checkbox.cf-dropdown-link-item > a {
+    padding-left: $dropdown-item--padding-h + $dropdown-item--checkbox-size +
+      $dropdown-item--padding-v;
+  }
+}
+
+.cf-dropdown-item__wrap .cf-dropdown-item--children,
+.cf-dropdown-item__wrap.cf-dropdown-link-item a,
+.cf-dropdown-item__wrap.cf-dropdown-item-empty {
+  word-break: keep-all;
+  white-space: pre-wrap;
+}
+
+.cf-dropdown-item__no-wrap .cf-dropdown-item--children,
+.cf-dropdown-item__no-wrap.cf-dropdown-link-item a,
+.cf-dropdown-item__wrap.cf-dropdown-item-empty {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cf-dropdown-item--dot,
+.cf-dropdown-item--checkbox {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.cf-dropdown-item--checkbox {
+  background-color: rgba($cf-grey-95, 0.15);
+  left: $dropdown-item--padding-h + ($dropdown-item--checkbox-size * 0.5);
+  width: $dropdown-item--checkbox-size;
+  height: $dropdown-item--checkbox-size;
+  border-radius: $cf-radius;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 3px;
+    height: 8px;
+    opacity: 0;
+    transform: translate(-50%, -60%) rotate(45deg);
+    transition: opacity $cf-transition-default, transform $cf-transition-default;
+    border-bottom: 2px solid $cf-white;
+    border-right: 2px solid $cf-white;
+  }
+
+  .active & {
+    background-color: $cf-grey-25;
+
+    &:after {
+      opacity: 1;
+    }
+  }
+}
+
+.cf-dropdown-item--dot {
+  background-color: rgba($cf-grey-95, 0.15);
+  left: $dropdown-item--padding-h + ($dropdown-item--checkbox-size * 0.5);
+  width: $dropdown-item--checkbox-size;
+  height: $dropdown-item--checkbox-size;
+  border-radius: 50%;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: $dropdown-item--dot-radius;
+    height: $dropdown-item--dot-radius;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(2, 2);
+    transition: opacity $cf-transition-default, transform $cf-transition-default;
+    background-color: $g20-white;
+    border-radius: 50%;
+  }
+
+  .active & {
+    background-color: $cf-grey-25;
+
+    &:after {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1, 1);
+    }
+  }
+}
+
+/*
+  Dropdown Link Item
+  ------------------------------------------------------------------------------
+*/
+
+.cf-dropdown-item.cf-dropdown-link-item {
+  padding: 0;
+
+  &.cf-dropdown-item__dot,
+  &.cf-dropdown-item__checkbox {
+    padding-left: 0;
+  }
+
+  a {
+    padding: $dropdown-item--padding-v $dropdown-item--padding-h;
+    display: inline-block;
+  }
+
+  a,
+  a:link,
+  a:active,
+  a:visited {
+    font-weight: $cf-font-weight--medium;
+    color: $cf-white;
+  }
+}
+
+/*
+  Dropdown Item (Disabled State)
+  ------------------------------------------------------------------------------
+*/
+
+.cf-dropdown-item__disabled,
+.cf-dropdown-item__disabled:hover,
+.cf-dropdown-link-item.cf-dropdown-item__disabled a,
+.cf-dropdown-link-item.cf-dropdown-item__disabled a:link,
+.cf-dropdown-link-item.cf-dropdown-item__disabled a:visited,
+.cf-dropdown-link-item.cf-dropdown-item__disabled a:active,
+.cf-dropdown-link-item.cf-dropdown-item__disabled a:hover {
+  cursor: not-allowed;
+  opacity: $cf-disabled-opacity;
+}
+
+/*
+  Dropdown Empty Item
+  ------------------------------------------------------------------------------
+*/
+
+.cf-dropdown-item-empty {
+  @include dropdownItemStyles();
+  text-align: center;
+  padding: $dropdown-item--padding-h;
+  opacity: 0.666;
+  user-select: none;
+}
+
+/*
+  Menu Dropdown Styles
+  ------------------------------------------------------------------------------
+*/
+
+.cf-dropdown-menu__line-break {
+  margin: 8px;
+  background-color: rgba(241, 241, 243, 0.1);
+}
+
+.cf-dropdown-menu--button {
+  background: none;
+}
+
+.cf-dropdown-menu--caret-icon {
+  font-size: 16.5px;
+  margin-right: 0.35em;
+}
+
+.cf-dropdown-menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/*
+  Dropdown HREF Item
+  ------------------------------------------------------------------------------
+*/
+
+.cf-dropdown-href-text {
+  color: #fff !important;
+  font-weight: 400 !important;
+}
+
+/*
+  Menu Themes
+  ------------------------------------------------------------------------------
+*/
+
+@mixin dropdownMenuColor($active) {
+  @extend %backdrop-blur-dark;
+
+  .cf-dropdown-item:not(.cf-dropdown-item__disabled):hover,
+  .cf-dropdown-item:not(.cf-dropdown-item__disabled):focus {
+    background-color: rgba($cf-grey-95, 0.1);
+    outline: none;
+  }
+
+  .cf-dropdown-item.active:not(.cf-dropdown-item__disabled) {
+    background-color: $active;
+  }
+}
+
+.cf-dropdown__amethyst {
+  @include dropdownMenuColor($c-comet);
+}
+
+.cf-dropdown__sapphire {
+  @include dropdownMenuColor($c-ocean);
+}
+
+.cf-dropdown__malachite {
+  @include dropdownMenuColor($c-rainforest);
+}
+
+.cf-dropdown__onyx {
+  @include dropdownMenuColor($c-pool);
+}
+
+.cf-dropdown__none {
+  @include dropdownMenuColor('none');
+}
