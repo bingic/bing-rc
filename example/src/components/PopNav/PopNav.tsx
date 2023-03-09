@@ -69,7 +69,9 @@ export const PopNavRoot = forwardRef<PopNavRef, PopNavProps>(
       ? ComponentColor.Secondary
       : ComponentColor.Default
 
-    return (
+
+      return (
+          // @ts-ignore
       <ClickOutside onClickOutside={handleClickOutside}>
         <div
           id={id}

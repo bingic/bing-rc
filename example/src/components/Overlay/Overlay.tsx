@@ -1,6 +1,6 @@
 // Libraries
 import React, {FunctionComponent, CSSProperties, useEffect, useRef} from 'react'
-import {Transition} from 'react-spring/renderprops'
+import {Transition} from 'react-spring'
 import classnames from 'classnames'
 import * as easings from 'd3-ease'
 
@@ -77,7 +77,7 @@ export const OverlayRoot: FunctionComponent<OverlayProps> = ({
         leave={{opacity: 0}}
         config={transitionConfig}
       >
-        {visible => visible && (props => renderMaskElement(props))}
+        {visible => visible && ((props: React.CSSProperties) => renderMaskElement(props))}
       </Transition>
       <Transition
         items={visible}
@@ -88,7 +88,7 @@ export const OverlayRoot: FunctionComponent<OverlayProps> = ({
       >
         {visible =>
           visible &&
-          (props => (
+          ((props: React.CSSProperties | undefined) => (
             <DapperScrollbars
               className={overlayClass}
               thumbStartColor={InfluxColors.White}

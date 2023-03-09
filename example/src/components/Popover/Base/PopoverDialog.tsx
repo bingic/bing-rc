@@ -161,7 +161,9 @@ export const PopoverDialog = forwardRef<PopoverDialogRef, PopoverDialogProps>(
         const sideRef = useRef(() => {
 
         })
+
         return (
+            // @ts-ignore
             <ClickOutside onClickOutside={onClickOutside}>
                 <div
                     id={id}

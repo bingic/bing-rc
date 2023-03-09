@@ -145,7 +145,9 @@ export const DropdownRoot = forwardRef<DropdownRef, DropdownProps>(
       'cf-dropdown__down': !dropUp,
     })
 
+
     return (
+        // @ts-ignore
       <ClickOutside onClickOutside={handleCollapseMenu}>
         <div
           style={style}

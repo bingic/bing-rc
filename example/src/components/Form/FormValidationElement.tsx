@@ -14,6 +14,7 @@ import {
   ValidationFunction,
 } from '../../Types'
 
+// @ts-ignore
 export interface FormValidationElementProps extends StandardFunctionProps {
   /** Child components */
   children: (status: ComponentStatus) => React.ReactNode

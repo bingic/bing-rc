@@ -102,7 +102,9 @@ export const TabsRoot = forwardRef<TabsRef, TabsProps>(
     }
 
     if (isDropdownEnabled && screenWidth <= dropdownBreakpoint) {
+
       return (
+          // @ts-ignore
         <ClickOutside onClickOutside={handleHideMenu}>
           <nav
             id={id}

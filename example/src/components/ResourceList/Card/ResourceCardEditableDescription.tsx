@@ -111,7 +111,9 @@ export const ResourceCardEditableDescription = forwardRef<
     )
 
     if (isEditing) {
+
       descriptionElement = (
+          // @ts-ignore
         <ClickOutside onClickOutside={handleStopEditing}>
           <Input
             ref={inputRef}
