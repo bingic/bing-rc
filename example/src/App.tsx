@@ -13,6 +13,7 @@ import {Dropdown} from "./components/Dropdowns";
 import {SelectDropdown} from "./components/Dropdowns/Composed/SelectDropdown";
 import {RangeSlider} from "./components/Inputs";
 import {Overlay} from "./components/Overlay";
+import InputCode from "./views/CodeInput";
 
 
 const App = () => {
@@ -54,6 +55,7 @@ const App = () => {
 
 
     const [onColor, setOnColor] = React.useState("#000000")
+    const [loading, setLoading] = React.useState(false)
     return (
         <>
             <Alert color={ComponentColor.Secondary} id={"1233"} icon={IconFont.AlertTriangle}/>
@@ -106,6 +108,17 @@ const App = () => {
                     }}/>
                 </Overlay.Body>
             </Overlay.Container>
+
+
+            <InputCode
+                length={6}
+                label="Code Label"
+                loading={loading}
+                onComplete={code => {
+                    setLoading(true);
+                    setTimeout(() => setLoading(false), 10000);
+                }}
+            />
         </>
     );
 }

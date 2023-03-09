@@ -88,13 +88,12 @@ const cs = {
         width: 46px;
         border-radius: 10px;
         margin: 0 4px;
-        border: 2px solid #858585;
+        border: 2px solid #f8f8f8;
         font-size: 38px;
 
         &:focus {
           outline: none;
-          border: 2px solid #2e2e2e;
-
+          border: 2px solid #b2b2b2;
         }
 
         &:nth-child(0n) {
