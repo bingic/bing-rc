@@ -27,7 +27,7 @@ const InputCode = ({length, label, loading, onComplete}: Props) => {
     };
 
     const onKeyUp = (e: React.KeyboardEvent<HTMLInputElement>, slot: number) => {
-        if (e.keyCode === 8 && !code[slot] && slot !== 0) {
+        if (e.key === "Backspace" && !code[slot] && slot !== 0) {
             const newCode = [...code];
             newCode[slot - 1] = "";
             setCode(newCode);
