@@ -1,0 +1,14 @@
+import { CSSProperties } from 'react';
+import { Gradients, InfluxColors, ComponentSize, ComponentColor, ComponentStatus, DropdownMenuTheme, DropdownMenuScrollbarColors, IconFont } from '../Types';
+export declare const convertCSSPropertiesToString: (styles: CSSProperties) => string;
+export declare const calculateTextColorFromBackground: (backgroundColor?: InfluxColors | string, gradient?: Gradients) => string;
+export declare const generateBackgroundStyle: (backgroundColor?: InfluxColors | string, gradient?: Gradients, bordered?: boolean, style?: CSSProperties, angle?: number) => CSSProperties;
+export declare const generateTextBlockStyle: (backgroundColor?: InfluxColors | string, textColor?: InfluxColors | string, style?: CSSProperties) => CSSProperties | undefined;
+export declare const generateLabelStyle: (labelColor: InfluxColors | string, isClickable: boolean, isMouseOver: boolean, style?: CSSProperties) => CSSProperties;
+export declare const generateTechnoSpinnerStyle: (diameterPixels: number, strokeWidth: ComponentSize, style?: CSSProperties) => CSSProperties;
+export declare const generateRangeSliderTrackFillStyle: (fill: boolean, min: number, max: number, value: number, color: ComponentColor, status: ComponentStatus) => CSSProperties | undefined;
+export declare const getScrollbarColorsFromTheme: (theme: DropdownMenuTheme) => DropdownMenuScrollbarColors;
+export declare const getDictionary: () => string[];
+export declare const generateRandomText: (wordCountLower: number, wordCountUpper: number) => string;
+export declare const getRandomIcon: () => IconFont;
+export declare const getRandomGradient: () => Gradients;
