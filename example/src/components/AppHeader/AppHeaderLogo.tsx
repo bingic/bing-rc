@@ -1,6 +1,6 @@
 // Libraries
 import React, {forwardRef} from 'react'
-import classnames from 'classnames'
+import classnames from "classnames"
 
 // Types
 import {StandardFunctionProps, ComponentSize} from '../../Types'

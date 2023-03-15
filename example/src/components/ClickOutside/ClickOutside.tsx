@@ -28,4 +28,5 @@ export class ClickOutside extends PureComponent<Props> {
       this.props.onClickOutside(e)
     }
   }
+
 }
