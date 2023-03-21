@@ -1,0 +1,73 @@
+{
+  "env": {
+    "es6": true, //
+    "browser": true,
+    "node": true
+  },
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": ["react"],
+  "rules": {
+    "indent": [
+      "warn",
+      4,
+      {
+        "SwitchCase": 1  // switch case 语句缩进
+      }
+    ],
+    "linebreak-style": ["error", "unix"], // 换行符
+//    "quotes": ["warn", "single"],  // 单引号
+    "semi": ["error", "always"], // 分号
+    "no-console": "error", // 禁止使用console
+    "no-debugger": "error", // 禁止使用debugger
+    "no-extra-boolean-cast": "error", // 禁止不必要的bool转换
+    "no-extra-semi": "error", // 禁止多余的冒号
+    "no-irregular-whitespace": "error", // 不能有不规则的空格
+    "no-multi-spaces": "warn",  //没有多余的空格
+    "no-multiple-empty-lines": "error", //不允许多个空行
+    "no-trailing-spaces": "error", //不允许行尾有空格
+    "no-unneeded-ternary": "error", //不允许不必要的三元表达式
+    "no-unused-vars": [
+      "error",  // 不允许有未使用的变量
+      {
+        "vars": "all", // 检查所有变量
+        "args": "none" // 不检查参数
+      }
+
+    ],
+    "no-var": "error",  //不允许使用var
+    "object-shorthand": "error",  //对象字面量中方法和属性使用简写语法
+    "prefer-arrow-callback": [  //箭头函数作为回调
+      "error",
+      {
+        "allowNamedFunctions": true  //允许使用命名函数
+      }
+    ],
+    "prefer-const": "error",  //首选const
+    "react/jsx-boolean-value": "error", //在JSX中强制布尔属性符号
+    "react/jsx-curly-spacing": ["error", "never"], //在JSX属性和表达式中加强或禁止大括号内的空格。
+    "react/jsx-equals-spacing": ["error", "never"], //在JSX属性中强制或禁止等号周围的空格
+    "react/jsx-key": "error", //在数组或迭代器中验证JSX具有key属性
+    "react/jsx-no-duplicate-props": "error", //防止在JSX中重复的props
+    "react/jsx-no-useless-fragment": "error", //防止使用不必要的React.Fragment
+    "react/jsx-no-undef": "error", //在JSX中禁止未声明的变量
+    "react/jsx-props-no-multi-spaces": "error", //防止多个空格出现在JSX属性中
+    "react/jsx-pascal-case": "error", //为用户定义的JSX组件强制使用PascalCase
+    "react/jsx-tag-spacing": [ //在JSX中强制或禁止类似于HTML的空格 //取消
+      "warn",
+      {
+        "closingSlash": "never", //关闭标签前的斜杠
+        "beforeSelfClosing": "always", //自我关闭标签前的空格
+        "afterOpening": "never", //打开标签后的空格
+        "beforeClosing": "never" //关闭标签前的空格
+      }
+    ],
+    "react/prop-types": "warn" //防止在React组件定义中丢失props验证
+  }
+}
