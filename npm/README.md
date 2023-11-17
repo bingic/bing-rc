@@ -1,3 +1,3 @@
-项目简介 着重说明
+##### changelog
 ================
 bingic-react-components

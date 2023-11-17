@@ -81,5 +81,5 @@
 - cd npm    进入文件夹
 - npm pack    将文件打包
 - npm login   登陆npm 已登陆可忽略
-- npm publish "xxx-1.0.1.tag" --access public
+- npm publish "bing-rc-1.0.10.tgz" --access public
 - 发布完毕。

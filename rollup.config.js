@@ -9,9 +9,9 @@ import del from 'rollup-plugin-delete';
 
 export default [
     {
-        input: ['./src/index.ts'],
+        input: ['./src/index.ts'],  // 入口文件
         output: {
-            file: 'build/index.js',
+            file: 'npm/build/index.js', // 输出文件
             format: 'es',
             sourcemap: false,
         },
@@ -21,7 +21,7 @@ export default [
 
         plugins: [
             del({
-                targets: ['build']
+                targets: ['npm/build']
             }),
             nodeResolve({
                 jsnext: true,
@@ -30,25 +30,25 @@ export default [
             }),
             commonjs({
                 include: ["node_modules/**"],
-            }),
+            }), // 将 CommonJS 转换成 ES2015 模块供 Rollup 处理
             babel({
                 babelHelpers: 'runtime',
                 plugins: ["@babel/plugin-transform-runtime"],
                 exclude: 'node_modules/**',
-            }),
-            terser(),
+            }),  // 编译
+            terser(),  // 压缩
             typescript({
                 declaration: true,
-                outDir: 'build',
+                outDir: 'npm/build',
                 tsconfig: 'tsconfig.json',
-            })
+            })  // 编译ts
         ],
 
         external:[
             {
-                includeDependencies: true, // 是否包含依赖 默认为false 不包含 为true时包含
+                includeDependencies: true, // 是否包含依赖 默认为 false 不包含 为true时包含
             },
-        ]
+        ]  // 不打包的模块
 
     },
     // {

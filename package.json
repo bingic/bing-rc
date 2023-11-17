@@ -1,15 +1,17 @@
 {
   "name": "bingic-rc",
-  "version": "1.0.1",
+  "version": "1.0.6",
   "description": "react components",
-  "module": "dist/index.js",
+  "module": "build/index.js",
   "type": "module",
-  "main": "npm/build/bundle.js",
-  "types": "build/bundle.d.ts",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
   "scripts": {
     "build": "rollup -c",
     "dev": "cd example && rollup -c -w",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "push": "git add . && git commit -m 'update' && git push",
+    "publish": "npm run build && npm publish"
   },
   "keywords": [
     "react",
@@ -18,7 +20,7 @@
   "author": {
     "name": "ling bing",
     "email": "icby@qq.com",
-    "WeChat": "aleogo"
+    "WeChat": "sooioox"
   },
   "license": "ISC",
   "dependencies": {

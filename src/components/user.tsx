@@ -11,7 +11,7 @@ const UserComp = ({user}:UProps) => {
     `
     return (
         <div>
-            我是一个用户组件 112 123
+            我是一个用户组件 112 123 {user}
             <div className={myStyle}>按钮</div>
         </div>
     );

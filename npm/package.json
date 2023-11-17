@@ -1,9 +1,14 @@
 {
   "name": "bing-rc",
-  "version": "1.0.4",
+  "version": "1.0.11",
   "description": "react components",
-  "main": "./build/bundle.js",
-  "types": "./build/bundle.d.ts",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bingic/"
+  },
+  "homepage": "https://www.baidu.com",
   "scripts": {},
   "files": [
     "build"
